@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #050D1A;
+  --bg-secondary: #0A1628;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --gold: #C9A84C;
+  --border: rgba(201, 168, 76, 0.2);
+}
+
+.light {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #EFF2F7;
+  --text-primary: #0A1628;
+  --text-secondary: #475569;
+  --border: rgba(10, 22, 40, 0.15);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #C9A84C, #D4B96A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: rgba(10, 22, 40, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(201, 168, 76, 0.15);
+  }
+
+  .light .glass {
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(10, 22, 40, 0.1);
+  }
+
+  .gold-underline {
+    position: relative;
+  }
+
+  .gold-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: #C9A84C;
+    border-radius: 2px;
+  }
+
+  .section-padding {
+    padding: 80px 0;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050D1A;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9A84C;
+  border-radius: 3px;
+}
