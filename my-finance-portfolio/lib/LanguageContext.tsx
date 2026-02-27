@@ -5,7 +5,7 @@ import { translations, Lang } from "./translations";
 interface LanguageContextType {
   lang: Lang;
   setLang: (l: Lang) => void;
-  t: typeof translations["en"];
+  t: (typeof translations)[Lang];
 }
 
 const LanguageContext = createContext<LanguageContextType>({
@@ -29,6 +29,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t: translations[lang] }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export const useLang = () => useContext(LanguageContext);g, setLang, t: translations[lang] }}>
       {children}
     </LanguageContext.Provider>
   );
