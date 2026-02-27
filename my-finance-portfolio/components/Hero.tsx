@@ -1,93 +1,86 @@
 "use client";
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Mail, ArrowRight, MapPin, TrendingUp, Building2, DollarSign } from "lucide-react";
-
-const stats = [
-  { value: "€500K+", label: "Revenue Managed", icon: DollarSign },
-  { value: "2", label: "Finance Internships", icon: Building2 },
-  { value: "4+ yrs", label: "Macro Trading", icon: TrendingUp },
-];
+import { Download, Github, Linkedin, Mail, ArrowRight, MapPin } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center bg-black overflow-hidden">
-      {/* Grid background */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black px-6 py-32">
+      {/* Animated background */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Grid pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
-      {/* Glowing orbs */}
-      <motion.div
-        className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.35, 0.2],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none"
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      />
+        {/* Moving orb 1 */}
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
+          animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.2, 1] }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        {/* Moving orb 2 */}
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"
+          animate={{ x: [0, -100, 0], y: [0, -50, 0], scale: [1, 1.3, 1] }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pt-24 pb-16 w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl w-full mx-auto relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
-          {/* Left column — text */}
-          <div>
-            {/* Badge */}
+          {/* ── Left column ── */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >
+            {/* Badge + Name + Subtitle */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm mb-8 backdrop-blur-sm"
+              transition={{ delay: 0.2 }}
             >
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Available for Internship · March – July 2026
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm mb-6 backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                Available for Internship · March – July 2026
+              </div>
+
+              <h1 className="text-6xl lg:text-7xl mb-6 leading-tight">
+                <span className="text-white">Wilfried</span>{" "}
+                <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                  LAWSON HELLU
+                </span>
+              </h1>
+
+              <p className="text-2xl text-gray-400 leading-relaxed">
+                Finance Analyst · Asset Management &amp; Corporate Finance
+              </p>
             </motion.div>
 
-            {/* Name */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-5xl lg:text-7xl font-bold text-white leading-tight mb-4"
-            >
-              Wilfried{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                LAWSON HELLU
-              </span>
-            </motion.h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-xl text-gray-400 mb-3"
-            >
-              Finance Analyst · Asset Management &amp; Corporate Finance
-            </motion.p>
-
-            {/* Location */}
+            {/* Description */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex items-center gap-2 text-gray-500 text-sm mb-10"
+              transition={{ delay: 0.4 }}
+              className="space-y-2"
             >
-              <MapPin size={14} className="text-blue-400" />
-              Paris, France · Université Paris-Saclay
+              <p className="text-lg text-gray-500 leading-relaxed max-w-xl">
+                Passionné par la finance et les données, je transforme des analyses complexes
+                en insights actionnables. Spécialiste en modélisation financière, gestion de
+                portefeuille et analyse quantitative.
+              </p>
+              <div className="flex items-center gap-2 text-gray-600 text-sm pt-1">
+                <MapPin size={13} className="text-blue-400" />
+                Paris, France · Université Paris-Saclay
+              </div>
             </motion.div>
 
-            {/* CTAs */}
+            {/* CTA buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-4 mb-10"
+              transition={{ delay: 0.6 }}
+              className="flex flex-wrap gap-4"
             >
               <a
                 href="#projects"
@@ -95,7 +88,7 @@ export default function Hero() {
                   e.preventDefault();
                   document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="group flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold transition-all duration-200 shadow-lg shadow-blue-500/25"
+                className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold transition-all duration-200 shadow-lg shadow-blue-500/30"
               >
                 View Projects
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -103,7 +96,7 @@ export default function Hero() {
               <a
                 href="/cv.pdf"
                 download
-                className="flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white font-semibold hover:bg-white/10 hover:border-blue-500/30 transition-all duration-200 backdrop-blur-sm"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white font-semibold hover:bg-white/10 hover:border-blue-500/30 transition-all duration-200 backdrop-blur-sm"
               >
                 <Download size={16} />
                 Download CV
@@ -114,94 +107,98 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex items-center gap-4"
+              transition={{ delay: 0.8 }}
+              className="flex gap-4 pt-2"
             >
               {[
-                { href: "https://linkedin.com/in/wilfried-lawsonhellu", Icon: Linkedin, label: "LinkedIn", color: "hover:text-blue-400" },
-                { href: "https://github.com/Wxlly00", Icon: Github, label: "GitHub", color: "hover:text-gray-200" },
-                { href: "mailto:wilfriedlawpro@gmail.com", Icon: Mail, label: "Email", color: "hover:text-cyan-400" },
-              ].map(({ href, Icon, label, color }) => (
-                <a
+                { href: "https://linkedin.com/in/wilfried-lawsonhellu", Icon: Linkedin, label: "LinkedIn" },
+                { href: "https://github.com/Wxlly00", Icon: Github, label: "GitHub" },
+                { href: "mailto:wilfriedlawpro@gmail.com", Icon: Mail, label: "Email" },
+              ].map(({ href, Icon, label }) => (
+                <motion.a
                   key={label}
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className={`p-3 rounded-full border border-white/10 bg-white/5 text-gray-400 ${color} hover:border-blue-500/30 hover:bg-white/10 transition-all duration-200 backdrop-blur-sm`}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="p-3 bg-white/5 rounded-full border border-white/10 hover:bg-white/10 hover:border-blue-500/50 transition-all"
                 >
-                  <Icon size={18} />
-                </a>
+                  <Icon size={18} className="text-gray-400" />
+                </motion.a>
               ))}
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Right column — decorative card */}
+          {/* ── Right column — glassmorphism card + floating stats ── */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="relative hidden lg:block"
           >
-            {/* Main card */}
-            <div className="relative rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm p-10 overflow-hidden">
-              {/* Inner glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/5 pointer-events-none" />
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              {/* Glowing border blur */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-cyan-500 to-blue-600 rounded-3xl blur-2xl opacity-30" />
 
-              {/* WLH monogram */}
-              <div className="relative flex items-center justify-center mb-8">
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-600/20 border border-blue-500/20 flex items-center justify-center">
-                  <span className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-                    WLH
-                  </span>
+              {/* Main card */}
+              <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-blue-950/50 to-cyan-950/50 backdrop-blur-xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10" />
+                {/* Decorative inner grid */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:2rem_2rem]" />
+
+                {/* Center monogram */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-36 h-36 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-600/20 border border-blue-500/20 flex items-center justify-center">
+                    <span className="text-4xl bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-bold">
+                      WLH
+                    </span>
+                  </div>
+                </div>
+
+                {/* Finance tags scattered */}
+                <div className="absolute bottom-8 left-0 right-0 flex flex-wrap justify-center gap-2 px-8">
+                  {["Asset Management", "Corporate Finance", "DCM", "UEMOA", "Quant"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 text-xs rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 backdrop-blur-sm"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
+            </motion.div>
 
-              {/* Stats grid */}
-              <div className="grid grid-cols-3 gap-4">
-                {stats.map((stat, i) => {
-                  const Icon = stat.icon;
-                  return (
-                    <motion.div
-                      key={stat.label}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.6 + i * 0.15 }}
-                      className="text-center p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/20 transition-all duration-200"
-                    >
-                      <div className="flex justify-center mb-2">
-                        <div className="p-2 rounded-lg bg-blue-500/10">
-                          <Icon size={14} className="text-blue-400" />
-                        </div>
-                      </div>
-                      <div className="text-lg font-bold text-white leading-tight">{stat.value}</div>
-                      <div className="text-xs text-gray-500 mt-1 leading-tight">{stat.label}</div>
-                    </motion.div>
-                  );
-                })}
-              </div>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mt-6">
-                {["Asset Management", "Corporate Finance", "DCM", "UEMOA", "Portfolio Theory"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 text-xs rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Floating badge */}
+            {/* Floating stat card — bottom left */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9 }}
-              className="absolute -top-4 -right-4 px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-xs font-semibold shadow-lg shadow-blue-500/30"
+              transition={{ delay: 1 }}
+              className="absolute -bottom-8 -left-8 bg-black/80 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl"
             >
-              Open to offers ✦
+              <p className="text-3xl mb-1 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-bold">
+                4+
+              </p>
+              <p className="text-sm text-gray-500">Years of Trading</p>
+            </motion.div>
+
+            {/* Floating stat card — top right */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2 }}
+              className="absolute -top-8 -right-8 bg-black/80 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl"
+            >
+              <p className="text-3xl mb-1 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-bold">
+                6
+              </p>
+              <p className="text-sm text-gray-500">Finance Projects</p>
             </motion.div>
           </motion.div>
         </div>
@@ -210,19 +207,20 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7 }}
-          className="lg:hidden grid grid-cols-3 gap-4 mt-10"
+          transition={{ delay: 0.9 }}
+          className="lg:hidden grid grid-cols-2 gap-4 mt-12"
         >
-          {stats.map((stat) => {
-            const Icon = stat.icon;
-            return (
-              <div key={stat.label} className="text-center p-4 rounded-2xl bg-white/5 border border-white/10">
-                <Icon size={14} className="text-blue-400 mx-auto mb-2" />
-                <div className="text-lg font-bold text-white">{stat.value}</div>
-                <div className="text-xs text-gray-500 mt-1">{stat.label}</div>
-              </div>
-            );
-          })}
+          {[
+            { value: "4+", label: "Years of Trading" },
+            { value: "6", label: "Finance Projects" },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center p-5 rounded-2xl bg-white/5 border border-white/10">
+              <p className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1">
+                {stat.value}
+              </p>
+              <p className="text-xs text-gray-500">{stat.label}</p>
+            </div>
+          ))}
         </motion.div>
       </div>
 
