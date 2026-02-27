@@ -4,8 +4,8 @@ import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="relative bg-black border-t border-white/5 py-12 px-6 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+    <footer className="relative bg-[#050D1A] border-t border-[#C9A84C]/10 py-12 px-6 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -14,9 +14,9 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-gray-600 text-sm">
+            <p className="text-slate-600 text-sm">
               © 2026{" "}
-              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-semibold">
+              <span className="bg-gradient-to-r from-[#C9A84C] to-[#D4B96A] bg-clip-text text-transparent font-semibold">
                 Wilfried LAWSON HELLU
               </span>
               {" "}— Finance Portfolio
@@ -40,7 +40,7 @@ export default function Footer() {
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className="p-2 text-gray-600 hover:text-blue-400 transition-colors"
+                className="p-2 text-slate-600 hover:text-[#C9A84C] transition-colors"
               >
                 <Icon size={16} />
               </a>

@@ -115,10 +115,10 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-32 px-6 bg-gradient-to-b from-black via-gray-950 to-black relative overflow-hidden"
+      className="py-32 px-6 bg-gradient-to-b from-[#050D1A] via-[#0A1628] to-[#050D1A] relative overflow-hidden"
     >
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#C9A84C]/20 to-transparent" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
       <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
         {/* Header */}
@@ -128,10 +128,10 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm mb-6 backdrop-blur-sm">
+          <div className="inline-block px-4 py-2 bg-[#C9A84C]/10 border border-[#C9A84C]/20 text-[#C9A84C] rounded-full text-sm mb-6 backdrop-blur-sm">
             Portfolio
           </div>
-          <h2 className="text-5xl lg:text-6xl text-white mb-5">Featured Projects</h2>
+          <h2 className="font-serif text-5xl lg:text-6xl font-bold text-white mb-5">Featured Projects</h2>
           <p className="text-xl text-gray-500 max-w-2xl mx-auto">
             Quantitative finance tools built to demonstrate real-world analytical capabilities
           </p>
@@ -148,7 +148,7 @@ export default function Projects() {
               whileHover={{ y: -8 }}
               className="group relative"
             >
-              <div className="relative overflow-hidden rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-blue-500/30 transition-all duration-300">
+              <div className="relative overflow-hidden rounded-3xl bg-[#0A1628]/60 border border-white/8 backdrop-blur-sm hover:border-[#C9A84C]/25 transition-all duration-300">
                 {/* Hover glow */}
                 <div className={`absolute inset-0 pointer-events-none bg-gradient-to-br ${project.accent.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
@@ -213,7 +213,7 @@ export default function Projects() {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-gray-300 text-sm font-medium hover:bg-white/10 hover:border-blue-500/50 hover:text-white transition-all duration-200 group/btn"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-slate-300 text-sm font-medium hover:bg-[#C9A84C]/10 hover:border-[#C9A84C]/40 hover:text-white transition-all duration-200 group/btn"
                   >
                     <Github size={15} />
                     View on GitHub

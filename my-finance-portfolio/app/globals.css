@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg-primary: #000000;
-  --bg-secondary: #050505;
+  --bg-primary: #050D1A;
+  --bg-secondary: #0A1628;
+  --bg-tertiary: #0F2040;
   --text-primary: #F8FAFC;
   --text-secondary: #94A3B8;
-  --border: rgba(255, 255, 255, 0.1);
+  --gold: #C9A84C;
+  --gold-light: #D4B96A;
+  --border: rgba(201, 168, 76, 0.12);
 }
 
 html {
@@ -24,16 +25,16 @@ body {
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(135deg, #60A5FA, #22D3EE);
+    background: linear-gradient(135deg, #C9A84C, #D4B96A);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .glass {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(201, 168, 76, 0.1);
   }
 
   .section-padding {
@@ -41,8 +42,8 @@ body {
   }
 
   .grid-bg {
-    background-image: linear-gradient(to right, #ffffff03 1px, transparent 1px),
-      linear-gradient(to bottom, #ffffff03 1px, transparent 1px);
+    background-image: linear-gradient(to right, #ffffff08 1px, transparent 1px),
+      linear-gradient(to bottom, #ffffff08 1px, transparent 1px);
     background-size: 4rem 4rem;
   }
 }
@@ -52,12 +53,12 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #050D1A;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(96, 165, 250, 0.3);
+  background: rgba(201, 168, 76, 0.3);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(96, 165, 250, 0.5);
+  background: rgba(201, 168, 76, 0.5);
 }

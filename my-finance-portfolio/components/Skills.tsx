@@ -47,11 +47,11 @@ export default function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="skills" className="py-32 px-6 bg-black relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+    <section id="skills" className="py-32 px-6 bg-[#050D1A] relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#C9A84C]/20 to-transparent" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       <motion.div
-        className="absolute top-1/3 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+        className="absolute top-1/3 right-0 w-96 h-96 bg-[#C9A84C]/8 rounded-full blur-3xl"
         animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -64,10 +64,10 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm mb-6 backdrop-blur-sm">
+          <div className="inline-block px-4 py-2 bg-[#C9A84C]/10 border border-[#C9A84C]/20 text-[#C9A84C] rounded-full text-sm mb-6 backdrop-blur-sm">
             Expertise
           </div>
-          <h2 className="text-5xl lg:text-6xl text-white mb-5">Skills</h2>
+          <h2 className="font-serif text-5xl lg:text-6xl font-bold text-white mb-5">Skills</h2>
           <p className="text-xl text-gray-500 max-w-2xl mx-auto">
             Competencies built through education, internships, and personal projects
           </p>
@@ -84,7 +84,7 @@ export default function Skills() {
               whileHover={{ y: -8, scale: 1.02 }}
               className="group"
             >
-              <div className="h-full p-8 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm hover:border-blue-500/30 transition-all duration-300 relative overflow-hidden">
+              <div className="h-full p-8 bg-[#0A1628]/60 rounded-3xl border border-white/8 backdrop-blur-sm hover:border-[#C9A84C]/20 transition-all duration-300 relative overflow-hidden">
                 {/* Gradient glow on hover */}
                 <div className={`absolute inset-0 pointer-events-none bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
 

@@ -10,8 +10,8 @@ const experiences = [
     location: "Lomé, Togo",
     period: "July 2025 — September 2025",
     badge: "Development Banking",
-    badgeColor: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    accentColor: "from-blue-500 to-blue-600",
+    badgeColor: "bg-[#C9A84C]/10 text-[#C9A84C] border-[#C9A84C]/20",
+    accentColor: "from-[#C9A84C] to-[#D4B96A]",
     bullets: [
       "Modeled Single Obligor Limit (SOL) framework per Basel III standards, optimizing maximum counterparty exposure for the regional development bank",
       "Produced investment committee briefings supporting structured financing decisions across the ECOWAS region",
@@ -24,8 +24,8 @@ const experiences = [
     location: "Lomé, Togo",
     period: "April 2025 — June 2025",
     badge: "Capital Markets",
-    badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/20",
-    accentColor: "from-cyan-500 to-cyan-600",
+    badgeColor: "bg-indigo-500/10 text-indigo-400 border-indigo-500/20",
+    accentColor: "from-indigo-500 to-blue-500",
     bullets: [
       "Participated in structuring bond issuances and commercial paper (Titres de Créances Négociables) for corporate and sovereign issuers",
       "Conducted credit analysis: financial ratio assessment, repayment capacity modeling, and presentation dossier preparation",
@@ -53,9 +53,9 @@ export default function Experience() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience" className="py-28 px-6 bg-gradient-to-b from-black via-gray-950 to-black relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+    <section id="experience" className="py-28 px-6 bg-gradient-to-b from-[#050D1A] via-[#0A1628] to-[#050D1A] relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#C9A84C]/20 to-transparent" />
 
       <div className="max-w-4xl mx-auto relative z-10" ref={ref}>
         <motion.div
@@ -64,17 +64,17 @@ export default function Experience() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm mb-5 backdrop-blur-sm">
+          <div className="inline-block px-4 py-2 bg-[#C9A84C]/10 border border-[#C9A84C]/20 text-[#C9A84C] rounded-full text-sm mb-5 backdrop-blur-sm">
             Career
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white">Experience</h2>
-          <p className="text-gray-500 mt-4">Professional journey in finance &amp; entrepreneurship</p>
+          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white">Experience</h2>
+          <p className="text-slate-500 mt-4">Professional journey in finance &amp; entrepreneurship</p>
         </motion.div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-0 md:left-6 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-blue-500/30 to-transparent" />
+          {/* Vertical line — gold gradient */}
+          <div className="absolute left-0 md:left-6 top-0 bottom-0 w-px bg-gradient-to-b from-[#C9A84C] via-[#C9A84C]/30 to-transparent" />
 
           <div className="space-y-10">
             {experiences.map((exp, i) => (
@@ -88,9 +88,9 @@ export default function Experience() {
                 {/* Timeline dot */}
                 <div className={`absolute left-[-5px] md:left-[19px] top-5 w-3 h-3 rounded-full bg-gradient-to-br ${exp.accentColor} shadow-lg`} />
 
-                <div className="rounded-3xl bg-white/5 border border-white/10 p-6 backdrop-blur-sm hover:border-blue-500/30 transition-all duration-300 group">
-                  {/* Glow on hover */}
-                  <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-300" />
+                <div className="rounded-3xl bg-[#0A1628]/60 border border-white/8 p-6 backdrop-blur-sm hover:border-[#C9A84C]/20 transition-all duration-300 group">
+                  {/* Subtle gold glow on hover */}
+                  <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-[#C9A84C]/0 to-transparent group-hover:from-[#C9A84C]/4 transition-all duration-300" />
 
                   <div className="relative">
                     <div className="flex flex-wrap gap-3 items-start justify-between mb-3">
@@ -99,25 +99,25 @@ export default function Experience() {
                           {exp.badge}
                         </span>
                         <h3 className="text-lg md:text-xl font-bold text-white">{exp.company}</h3>
-                        <p className="text-blue-400 font-medium text-sm mt-0.5">{exp.role}</p>
+                        <p className="text-[#C9A84C] font-medium text-sm mt-0.5">{exp.role}</p>
                       </div>
                     </div>
 
-                    <div className="flex flex-wrap gap-4 text-xs text-gray-500 mb-5">
+                    <div className="flex flex-wrap gap-4 text-xs text-slate-500 mb-5">
                       <span className="flex items-center gap-1">
-                        <Calendar size={12} className="text-blue-400/60" />
+                        <Calendar size={12} className="text-[#C9A84C]/60" />
                         {exp.period}
                       </span>
                       <span className="flex items-center gap-1">
-                        <MapPin size={12} className="text-blue-400/60" />
+                        <MapPin size={12} className="text-[#C9A84C]/60" />
                         {exp.location}
                       </span>
                     </div>
 
                     <ul className="space-y-2">
                       {exp.bullets.map((bullet, j) => (
-                        <li key={j} className="flex items-start gap-2 text-gray-400 text-sm leading-relaxed">
-                          <span className="text-blue-400 mt-1.5 text-xs shrink-0">▸</span>
+                        <li key={j} className="flex items-start gap-2 text-slate-400 text-sm leading-relaxed">
+                          <span className="text-[#C9A84C] mt-1.5 text-xs shrink-0">▸</span>
                           {bullet}
                         </li>
                       ))}

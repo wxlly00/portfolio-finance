@@ -4,21 +4,21 @@ import { Download, Github, Linkedin, Mail, ArrowRight, MapPin } from "lucide-rea
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black px-6 py-32">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050D1A] px-6 py-32">
       {/* Animated background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Grid pattern */}
         <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
-        {/* Moving orb 1 */}
+        {/* Moving orb 1 — gold */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#C9A84C]/10 rounded-full blur-3xl"
           animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.2, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* Moving orb 2 */}
+        {/* Moving orb 2 — indigo */}
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl"
           animate={{ x: [0, -100, 0], y: [0, -50, 0], scale: [1, 1.3, 1] }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -40,19 +40,19 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm mb-6 backdrop-blur-sm">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A84C]/10 border border-[#C9A84C]/20 text-[#C9A84C] rounded-full text-sm mb-6 backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 Available for Internship · March – July 2026
               </div>
 
-              <h1 className="text-6xl lg:text-7xl mb-6 leading-tight">
+              <h1 className="font-serif text-6xl lg:text-7xl mb-6 leading-tight font-bold">
                 <span className="text-white">Wilfried</span>{" "}
-                <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#C9A84C] via-[#D4B96A] to-[#C9A84C] bg-clip-text text-transparent">
                   LAWSON HELLU
                 </span>
               </h1>
 
-              <p className="text-2xl text-gray-400 leading-relaxed">
+              <p className="text-2xl text-slate-400 leading-relaxed">
                 Finance Analyst · Asset Management &amp; Corporate Finance
               </p>
             </motion.div>
@@ -64,13 +64,13 @@ export default function Hero() {
               transition={{ delay: 0.4 }}
               className="space-y-2"
             >
-              <p className="text-lg text-gray-500 leading-relaxed max-w-xl">
+              <p className="text-lg text-slate-500 leading-relaxed max-w-xl">
                 Passionné par la finance et les données, je transforme des analyses complexes
                 en insights actionnables. Spécialiste en modélisation financière, gestion de
                 portefeuille et analyse quantitative.
               </p>
-              <div className="flex items-center gap-2 text-gray-600 text-sm pt-1">
-                <MapPin size={13} className="text-blue-400" />
+              <div className="flex items-center gap-2 text-slate-600 text-sm pt-1">
+                <MapPin size={13} className="text-[#C9A84C]" />
                 Paris, France · Université Paris-Saclay
               </div>
             </motion.div>
@@ -88,7 +88,7 @@ export default function Hero() {
                   e.preventDefault();
                   document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold transition-all duration-200 shadow-lg shadow-blue-500/30"
+                className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-[#C9A84C] to-[#D4B96A] hover:from-[#D4B96A] hover:to-[#C9A84C] text-[#050D1A] font-semibold transition-all duration-200 shadow-lg shadow-[#C9A84C]/20"
               >
                 View Projects
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -96,7 +96,7 @@ export default function Hero() {
               <a
                 href="/cv.pdf"
                 download
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white font-semibold hover:bg-white/10 hover:border-blue-500/30 transition-all duration-200 backdrop-blur-sm"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[#C9A84C]/20 bg-[#C9A84C]/5 text-white font-semibold hover:bg-[#C9A84C]/10 hover:border-[#C9A84C]/40 transition-all duration-200 backdrop-blur-sm"
               >
                 <Download size={16} />
                 Download CV
@@ -123,9 +123,9 @@ export default function Hero() {
                   aria-label={label}
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="p-3 bg-white/5 rounded-full border border-white/10 hover:bg-white/10 hover:border-blue-500/50 transition-all"
+                  className="p-3 bg-[#C9A84C]/5 rounded-full border border-[#C9A84C]/15 hover:bg-[#C9A84C]/10 hover:border-[#C9A84C]/40 transition-all"
                 >
-                  <Icon size={18} className="text-gray-400" />
+                  <Icon size={18} className="text-slate-400 group-hover:text-[#C9A84C]" />
                 </motion.a>
               ))}
             </motion.div>
@@ -143,19 +143,19 @@ export default function Hero() {
               transition={{ duration: 0.3 }}
               className="relative"
             >
-              {/* Glowing border blur */}
-              <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500 via-cyan-500 to-blue-600 rounded-3xl blur-2xl opacity-30" />
+              {/* Glowing border blur — gold */}
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[#C9A84C] via-[#D4B96A] to-[#0F2040] rounded-3xl blur-2xl opacity-20" />
 
               {/* Main card */}
-              <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-blue-950/50 to-cyan-950/50 backdrop-blur-xl">
-                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500/10 to-cyan-500/10" />
+              <div className="relative aspect-square rounded-3xl overflow-hidden border border-[#C9A84C]/15 bg-gradient-to-br from-[#0F2040]/80 to-[#050D1A]/90 backdrop-blur-xl">
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-[#C9A84C]/8 to-transparent" />
                 {/* Decorative inner grid */}
-                <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:2rem_2rem]" />
+                <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-[size:2rem_2rem]" />
 
                 {/* Center monogram */}
                 <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                  <div className="w-36 h-36 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-600/20 border border-blue-500/20 flex items-center justify-center">
-                    <span className="text-4xl bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-bold">
+                  <div className="w-40 h-40 rounded-full bg-gradient-to-br from-[#C9A84C]/20 to-[#0F2040]/60 border border-[#C9A84C]/25 flex items-center justify-center shadow-[0_0_60px_rgba(201,168,76,0.15)]">
+                    <span className="font-serif text-5xl bg-gradient-to-r from-[#C9A84C] to-[#D4B96A] bg-clip-text text-transparent font-bold">
                       WLH
                     </span>
                   </div>
@@ -166,7 +166,7 @@ export default function Hero() {
                   {["Asset Management", "Corporate Finance", "DCM", "UEMOA", "Quant"].map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 text-xs rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 backdrop-blur-sm"
+                      className="px-3 py-1 text-xs rounded-full bg-[#C9A84C]/10 border border-[#C9A84C]/20 text-[#C9A84C] backdrop-blur-sm"
                     >
                       {tag}
                     </span>
@@ -180,12 +180,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1 }}
-              className="absolute -bottom-8 -left-8 bg-black/80 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl"
+              className="absolute -bottom-8 -left-8 bg-[#0A1628]/90 backdrop-blur-xl rounded-2xl p-6 border border-[#C9A84C]/15 shadow-2xl"
             >
-              <p className="text-3xl mb-1 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-bold">
+              <p className="font-serif text-3xl mb-1 bg-gradient-to-r from-[#C9A84C] to-[#D4B96A] bg-clip-text text-transparent font-bold">
                 4+
               </p>
-              <p className="text-sm text-gray-500">Years of Trading</p>
+              <p className="text-sm text-slate-500">Years of Trading</p>
             </motion.div>
 
             {/* Floating stat card — top right */}
@@ -193,12 +193,12 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2 }}
-              className="absolute -top-8 -right-8 bg-black/80 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl"
+              className="absolute -top-8 -right-8 bg-[#0A1628]/90 backdrop-blur-xl rounded-2xl p-6 border border-[#C9A84C]/15 shadow-2xl"
             >
-              <p className="text-3xl mb-1 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-bold">
+              <p className="font-serif text-3xl mb-1 bg-gradient-to-r from-[#C9A84C] to-[#D4B96A] bg-clip-text text-transparent font-bold">
                 6
               </p>
-              <p className="text-sm text-gray-500">Finance Projects</p>
+              <p className="text-sm text-slate-500">Finance Projects</p>
             </motion.div>
           </motion.div>
         </div>
@@ -214,18 +214,18 @@ export default function Hero() {
             { value: "4+", label: "Years of Trading" },
             { value: "6", label: "Finance Projects" },
           ].map((stat) => (
-            <div key={stat.label} className="text-center p-5 rounded-2xl bg-white/5 border border-white/10">
-              <p className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1">
+            <div key={stat.label} className="text-center p-5 rounded-2xl bg-[#C9A84C]/5 border border-[#C9A84C]/15">
+              <p className="font-serif text-2xl font-bold bg-gradient-to-r from-[#C9A84C] to-[#D4B96A] bg-clip-text text-transparent mb-1">
                 {stat.value}
               </p>
-              <p className="text-xs text-gray-500">{stat.label}</p>
+              <p className="text-xs text-slate-500">{stat.label}</p>
             </div>
           ))}
         </motion.div>
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#050D1A] to-transparent pointer-events-none" />
     </section>
   );
 }
