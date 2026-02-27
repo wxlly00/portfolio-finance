@@ -2,101 +2,51 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { GraduationCap, MapPin } from "lucide-react";
+import { useLang } from "@/lib/LanguageContext";
 
-const education = [
-  {
-    school: "Université Paris-Saclay",
-    location: "Sceaux, France",
-    degree: "Licence Économie-Gestion — Économie Appliquée",
-    period: "2021 — Present",
-    status: "In Progress",
-    statusColor: "bg-green-500/10 text-green-400 border-green-500/20",
-    courses: ["Advanced Macroeconomics", "Industrial Economics", "Statistics & Data Analysis", "International Economics"],
-    iconGradient: "from-blue-600 to-cyan-600",
-    highlight: true,
-  },
-  {
-    school: "École Alpha",
-    location: "Lomé, Togo",
-    degree: "Baccalauréat Général — Mention Bien",
-    period: "June 2021",
-    status: "Graduated",
-    statusColor: "bg-blue-500/10 text-blue-400 border-blue-500/20",
-    courses: ["Mathematics", "Economics", "Geopolitics"],
-    iconGradient: "from-cyan-600 to-teal-600",
-    highlight: false,
-  },
-];
+const gradients = ["from-sky-600 to-cyan-600", "from-cyan-600 to-teal-600"];
 
 export default function Education() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const { t } = useLang();
+  const ed = t.education;
 
   return (
-    <section id="education" className="py-28 px-6 bg-black relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
+    <section id="education" className="py-28 px-6 relative overflow-hidden bg-[#030712]">
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px]" />
       <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm mb-5 backdrop-blur-sm">
-            Academic Background
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white">Education</h2>
-          <p className="text-gray-500 mt-4">Academic foundation in economics &amp; finance</p>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="mb-16">
+          <p className="text-xs font-mono text-sky-400 uppercase tracking-widest mb-3">{ed.tag}</p>
+          <h2 className="text-4xl lg:text-5xl text-white tracking-tight">{ed.title}</h2>
+          <p className="text-white/30 mt-3 text-sm">{ed.subtitle}</p>
         </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-6 max-w-4xl">
-          {education.map((edu, i) => (
-            <motion.div
-              key={edu.school}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              whileHover={{ y: -4 }}
-              className="group"
-            >
-              <div className={`h-full rounded-3xl bg-white/5 border backdrop-blur-sm p-7 hover:border-blue-500/30 transition-all duration-300 relative overflow-hidden ${edu.highlight ? "border-blue-500/20" : "border-white/10"}`}>
-                {/* Gradient glow on hover */}
-                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-300" />
-
-                <div className="relative">
-                  <div className="flex items-start justify-between mb-5">
-                    <div className={`p-3 rounded-2xl bg-gradient-to-br ${edu.iconGradient} shadow-lg`}>
-                      <GraduationCap size={22} className="text-white" />
-                    </div>
-                    <span className={`text-xs font-medium px-3 py-1 rounded-full border ${edu.statusColor}`}>
-                      {edu.status}
-                    </span>
+        <div className="grid md:grid-cols-2 gap-5 max-w-4xl">
+          {ed.items.map((item, i) => (
+            <motion.div key={i} initial={{ opacity: 0, y: 24 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5, delay: i * 0.12 }} whileHover={{ y: -4 }}>
+              <div className="h-full rounded-2xl p-6 group" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)", transition: "border-color 0.3s" }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = "rgba(14,165,233,0.25)")}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)")}>
+                <div className="flex items-start justify-between mb-5">
+                  <div className={`p-3 rounded-xl bg-gradient-to-br ${gradients[i]}`}>
+                    <GraduationCap size={18} className="text-white" />
                   </div>
-
-                  <h3 className="text-xl font-bold text-white mb-1">{edu.school}</h3>
-                  <p className="text-blue-400 font-medium text-sm mb-3">{edu.degree}</p>
-
-                  <div className="flex flex-wrap gap-3 text-xs text-gray-500 mb-5">
-                    <span className="flex items-center gap-1">
-                      <MapPin size={11} className="text-blue-400/60" />
-                      {edu.location}
-                    </span>
-                    <span className="flex items-center gap-1 text-gray-500">
-                      📅 {edu.period}
-                    </span>
-                  </div>
-
-                  <div>
-                    <p className="text-xs text-gray-600 uppercase tracking-wider mb-3 font-medium">Key subjects</p>
-                    <div className="flex flex-wrap gap-2">
-                      {edu.courses.map((course) => (
-                        <span key={course} className="text-xs px-3 py-1 rounded-full bg-white/5 text-gray-400 border border-white/10">
-                          {course}
-                        </span>
-                      ))}
-                    </div>
+                  <span className="text-xs font-mono px-2.5 py-1 rounded-lg" style={{ background: "rgba(14,165,233,0.1)", border: "1px solid rgba(14,165,233,0.2)", color: "#38bdf8" }}>
+                    {item.status}
+                  </span>
+                </div>
+                <h3 className="text-base font-semibold text-white mb-1">{item.school}</h3>
+                <p className="text-sky-400 text-sm font-medium mb-3">{item.degree}</p>
+                <div className="flex flex-wrap gap-3 text-xs text-white/25 mb-4">
+                  <span className="flex items-center gap-1"><MapPin size={10} className="text-sky-400/50" />{item.location}</span>
+                  <span className="text-white/25">📅 {item.period}</span>
+                </div>
+                <div>
+                  <p className="text-xs text-white/20 uppercase tracking-widest mb-2 font-mono">Courses</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {item.courses.map(c => (
+                      <span key={c} className="text-xs px-2.5 py-1 rounded-lg font-mono text-white/30" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>{c}</span>
+                    ))}
                   </div>
                 </div>
               </div>
