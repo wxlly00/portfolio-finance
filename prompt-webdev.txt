@@ -1,0 +1,255 @@
+You are building a complete professional finance portfolio website for Wilfried LAWSON HELLU.
+
+TECH STACK: Next.js 15 App Router + TypeScript + Tailwind CSS + shadcn/ui + Framer Motion
+
+STEP 1 - SETUP:
+Run these commands in /Users/mac/portfolio-wilfried/:
+npx create-next-app@latest my-finance-portfolio --typescript --tailwind --app --no-src-dir --import-alias "@/*" --yes
+Then cd my-finance-portfolio
+npm install framer-motion lucide-react
+npx shadcn@latest init --defaults --yes
+npx shadcn@latest add button card badge separator --yes
+
+DESIGN SYSTEM:
+- Primary: Navy Blue #0A1628
+- Accent: Gold #C9A84C
+- Background dark: #050D1A
+- Text: white/gray
+- Font: Inter (body) + Playfair Display (headings) - import from Google Fonts in layout.tsx
+- Dark mode support with next-themes
+- Subtle animations (fade-in on scroll, slide-up) with Framer Motion
+- 100% responsive mobile-first
+
+STEP 2 - CONFIGURE:
+Install next-themes: npm install next-themes
+Update tailwind.config.ts to add custom colors:
+  navy: { DEFAULT: '#0A1628', dark: '#050D1A' }
+  gold: { DEFAULT: '#C9A84C', light: '#D4B96A' }
+Update app/globals.css with CSS variables for dark/light modes.
+Update app/layout.tsx with: Google Fonts import (Inter + Playfair Display), full SEO metadata, ThemeProvider wrapper.
+
+Metadata to use:
+- title: "Wilfried LAWSON HELLU | Finance Analyst | Asset Management"
+- description: "Finance professional specializing in Asset Management and Corporate Finance. Experience at BIDC/ECOWAS and SGI-TOGO. Seeking internship in Paris."
+- keywords: "finance analyst, asset management, corporate finance, ECOWAS, Paris-Saclay"
+- openGraph: title, description, type: "website"
+
+STEP 3 - BUILD ALL COMPONENTS in components/ folder:
+
+=== components/Navbar.tsx ===
+Fixed navbar with blur backdrop. 
+Logo: "WLH" in gold Playfair Display font, left side.
+Nav links: About, Experience, Projects, Skills, Contact - smooth scroll onClick.
+Right side: ThemeToggle button (sun/moon icon) + "Download CV" button (gold bg, dark text).
+On mobile: hamburger menu that opens drawer.
+
+=== components/Hero.tsx ===
+Full viewport height section.
+Animated background: dark navy with subtle CSS gradient animation (radial gradient moving slowly).
+Content centered:
+- Small badge: "Available for Internship - March to July 2026" (gold border, gold text)
+- H1: "Wilfried LAWSON HELLU" - Playfair Display, white, text-5xl md:text-7xl, font-bold
+- H2: "Finance Analyst | Asset Management & Corporate Finance" - gold color, text-xl md:text-2xl
+- Location: "Paris, France" with map pin icon
+- Two buttons: "View Projects" (gold filled, scroll to #projects) + "Download CV" (outlined, white)
+- Three stat pills at bottom: "500K+ Revenue", "3 Internships", "4+ Years Trading"
+Framer Motion: fade in staggered (badge, h1, h2, buttons each with 0.2s delay)
+
+=== components/About.tsx ===
+Section id="about". Two-column layout (stack on mobile).
+Left: circular avatar placeholder (gradient navy-to-gold, 200px, white "WLH" initials in center).
+Right:
+- "About Me" heading with gold underline
+- Bio paragraph 1: "With hands-on experience at the BIDC — the ECOWAS regional development bank — and SGI-TOGO in West African debt capital markets, I bring a unique perspective combining institutional finance with frontier market expertise."
+- Bio paragraph 2: "As founder of Papyrus Distributions, I managed a business generating over €500K in cumulative revenue, overseeing full P&L, treasury, and banking relationships. This entrepreneurial experience gave me a hands-on understanding of corporate finance that complements my academic training."
+- Bio paragraph 3: "Currently pursuing my degree at Université Paris-Saclay and actively building quantitative finance skills through personal projects in portfolio optimization, risk modeling, and valuation. 4+ years of personal macro trading round out my analytical toolkit."
+3 stat cards below bio: "500K+ EUR Revenue Managed", "2 Finance Internships", "4+ Years Macro Trading"
+
+=== components/Experience.tsx ===
+Section id="experience". Vertical timeline with animated gold left border line.
+Three timeline entries (animate in on scroll with Framer Motion):
+
+Entry 1:
+Company: "BIDC — Banque d'Investissement et de Développement de la CEDEAO"
+Role: "Analyste Stagiaire — Recherche & Stratégie"
+Location: "Lomé, Togo"
+Period: "July 2025 — September 2025"
+Badge: "Development Banking"
+Bullets:
+- Modeled Single Obligor Limit (SOL) framework per Basel III standards, optimizing maximum counterparty exposure for the regional development bank
+- Produced investment committee briefings supporting structured financing decisions across the ECOWAS region
+- Contributed to regional strategic plan development through quantitative data analysis
+
+Entry 2:
+Company: "SGI-TOGO — Société de Gestion et d'Intermédiation"
+Role: "Analyste Junior — Marchés des Capitaux"
+Location: "Lomé, Togo"
+Period: "April 2025 — June 2025"
+Badge: "Capital Markets"
+Bullets:
+- Participated in structuring bond issuances and commercial paper (Titres de Créances Négociables) for corporate and sovereign issuers
+- Conducted credit analysis: financial ratio assessment, repayment capacity modeling
+- Crafted pitch decks and investment teasers targeting UEMOA institutional investors
+
+Entry 3:
+Company: "Papyrus Distributions"
+Role: "Founder & CEO"
+Location: "Paris, France"
+Period: "May 2023 — March 2025"
+Badge: "Entrepreneurship"
+Bullets:
+- Built and managed P&L of a business generating 500K+ EUR in cumulative revenue
+- Optimized working capital and banking relationships; improved net profitability by +15% through cost-optimization initiatives
+- Managed judicial liquidation following major client default: impact analysis, liability management, and full account closure
+
+=== components/Education.tsx ===
+Section id="education". Two cards side by side (stack on mobile).
+
+Card 1 (larger, current):
+University: "Université Paris-Saclay"
+Location: "Sceaux, France"
+Degree: "Licence Économie-Gestion — Économie Appliquée"
+Period: "2021 — Present"
+Status badge: "In Progress"
+Key courses: Advanced Macroeconomics, Industrial Economics, Statistics & Data Analysis, International Economics
+
+Card 2:
+School: "École Alpha"
+Location: "Lomé, Togo"
+Degree: "Baccalauréat Général — Mention Bien"
+Period: "June 2021"
+Specializations: Mathematics, Economics, Geopolitics
+
+=== components/Projects.tsx ===
+Section id="projects". Heading "Featured Projects" with gold underline.
+6 cards in responsive grid (3 cols desktop, 2 cols tablet, 1 col mobile).
+
+Each card: category badge (top) + title (bold, white) + description (gray, 3 lines) + tech badges (gold outline pills) + "View on GitHub" link with arrow icon.
+Card hover: translateY(-4px), gold border, subtle shadow glow.
+
+Projects array:
+1. {
+  title: "Portfolio Optimizer",
+  category: "Asset Management",
+  desc: "Markowitz mean-variance optimization with real market data. Interactive dashboard featuring efficient frontier visualization, Sharpe ratio maximization, and portfolio analytics.",
+  tech: ["Python", "Streamlit", "PyPortfolioOpt", "yfinance"],
+  github: "https://github.com/Wxlly00/portfolio-optimizer",
+  color: "blue"
+}
+2. {
+  title: "LBO Model",
+  category: "Private Equity",
+  desc: "End-to-end Leveraged Buyout model with debt waterfall, 5-year cash flow projections, and IRR/MOIC analysis across bear, base, and bull exit scenarios.",
+  tech: ["Python", "openpyxl", "pandas"],
+  github: "https://github.com/Wxlly00/lbo-model",
+  color: "purple"
+}
+3. {
+  title: "DCF Valuation Engine",
+  category: "Corporate Finance",
+  desc: "Automated Discounted Cash Flow engine pulling live financial data via API. Generates intrinsic valuations with WACC sensitivity tables and upside/downside analysis.",
+  tech: ["Python", "yfinance", "pandas", "Streamlit"],
+  github: "https://github.com/Wxlly00/dcf-engine",
+  color: "green"
+}
+4. {
+  title: "VaR Risk Dashboard",
+  category: "Risk Management",
+  desc: "Multi-method Value-at-Risk calculator using Historical, Parametric, and Monte Carlo (10,000 simulations) approaches with interactive portfolio stress testing.",
+  tech: ["Python", "Streamlit", "scipy", "numpy"],
+  github: "https://github.com/Wxlly00/var-dashboard",
+  color: "red"
+}
+5. {
+  title: "ESG Scoring Tool",
+  category: "Sustainable Finance",
+  desc: "Multi-criteria ESG screening framework for equity universes. Weighted scoring across Environmental, Social and Governance pillars with heatmap and radar visualizations.",
+  tech: ["Python", "pandas", "plotly", "Streamlit"],
+  github: "https://github.com/Wxlly00/esg-tool",
+  color: "emerald"
+}
+6. {
+  title: "Credit Analysis Dashboard",
+  category: "Fixed Income",
+  desc: "Credit assessment tool using key financial ratios, Altman Z-Score, and an internal rating model mapping issuers from AAA to D with traffic-light risk visualization.",
+  tech: ["Python", "Streamlit", "pandas"],
+  github: "https://github.com/Wxlly00/credit-dashboard",
+  color: "yellow"
+}
+
+=== components/Skills.tsx ===
+Section id="skills". Two columns layout.
+
+Left column "Finance & Analysis":
+- Financial Analysis: 85%
+- Valuation (DCF/LBO): 80%
+- Risk Management: 75%
+- Debt Capital Markets: 75%
+- Portfolio Analysis: 70%
+- Credit Analysis: 72%
+
+Right column top "Technical Tools":
+- Excel Advanced: 90%
+- Python: 65%
+- PowerPoint: 90%
+- Bloomberg (Learning): 40%
+
+Right column bottom "Languages":
+- French (Native): 100%
+- English — C1 Professional: 90%
+- Spanish — B2: 75%
+
+Progress bars animate from 0 to target width when section enters viewport (Framer Motion + useInView).
+
+=== components/Contact.tsx ===
+Section id="contact". Two columns.
+
+Left: 
+- "Let's Connect" heading
+- Short text: "Open to internship opportunities in Asset Management and Corporate Finance in Paris. Available March to July 2026."
+- Contact cards:
+  - Email: wilfriedlawpro@gmail.com (mailto link)
+  - LinkedIn: linkedin.com/in/wilfried-lawsonhellu (external link)
+  - Location: Massy, Ile-de-France, France
+
+Right: Contact form (static, action="mailto:wilfriedlawpro@gmail.com" method="get"):
+- Name input
+- Email input
+- Subject input
+- Message textarea
+- "Send Message" button (gold)
+
+=== components/Footer.tsx ===
+Dark bg (#050D1A). Centered:
+- "Wilfried LAWSON HELLU" in gold
+- "Finance Analyst | Asset Management & Corporate Finance"
+- Social links: LinkedIn icon + GitHub icon (Wxlly00)
+- "2026 — Built with Next.js & Tailwind CSS"
+
+STEP 4 - MAIN PAGE:
+Update app/page.tsx:
+Import and render in order: Navbar, Hero, About, Experience, Education, Projects, Skills, Contact, Footer
+Each section except Navbar/Footer has proper id for scroll.
+"use client" at top if needed for Framer Motion.
+
+STEP 5 - THEME TOGGLE:
+Create components/ThemeToggle.tsx using next-themes useTheme hook.
+Sun icon when dark mode, moon icon when light mode.
+Add ThemeProvider to app/layout.tsx wrapping children.
+
+STEP 6 - ASSETS:
+Create public/cv.pdf placeholder (just an empty file or copy).
+Create public/favicon.svg with simple WLH text in gold on navy background.
+
+STEP 7 - BUILD:
+Run: npm run build
+If there are TypeScript errors, fix them.
+The build MUST succeed.
+
+STEP 8 - GIT:
+cd /Users/mac/portfolio-wilfried/my-finance-portfolio
+git add .
+git commit -m "feat: complete portfolio website for Wilfried LAWSON HELLU - Next.js 15 + Tailwind + shadcn/ui"
+
+STEP 9 - NOTIFY when completely done:
+Run: openclaw system event --text "Done: Portfolio website built at /Users/mac/portfolio-wilfried/my-finance-portfolio — Next.js 15 production build successful" --mode now

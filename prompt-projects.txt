@@ -1,0 +1,404 @@
+Create 6 professional Python finance projects for Wilfried LAWSON HELLU's portfolio.
+All projects go in /Users/mac/portfolio-wilfried/projects/
+
+For each project: create folder, write all Python files (complete working code, no placeholders), write requirements.txt, write professional README.md, then git init + git add + git commit.
+
+=== PROJECT 1: 01-portfolio-optimizer ===
+
+requirements.txt:
+yfinance>=0.2.18
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+streamlit>=1.28.0
+PyPortfolioOpt>=1.5.4
+plotly>=5.18.0
+
+main.py — Portfolio optimization script:
+Download 2 years of data for: AAPL, MSFT, GOOGL, JPM, GS, BLK, V, AMZN, NVDA, META
+Use yfinance. Calculate expected returns (mean historical), covariance matrix.
+Run 3 portfolios: Max Sharpe (scipy minimize), Min Volatility, Equal Weight.
+Print formatted table: weights, expected annual return, annual volatility, Sharpe ratio.
+Generate efficient frontier (500 random portfolios), save plot as output/efficient_frontier.png using matplotlib.
+
+app.py — Streamlit dashboard:
+Title: "Portfolio Optimizer — Efficient Frontier Analysis"
+Sidebar: stock multiselect (default: AAPL, MSFT, JPM, GS, BLK), date range picker (default: 2 years), risk-free rate slider (default 4.5%).
+3 tabs:
+  Tab "Optimization": Show pie chart of optimal weights + metrics table (return, vol, sharpe) for 3 strategies side by side
+  Tab "Efficient Frontier": Scatter of 1000 random portfolios (color=sharpe), frontier curve, mark optimal point in gold star
+  Tab "Performance": Line chart of cumulative returns: optimized vs equal weight vs SPY benchmark
+Use plotly for all charts.
+
+README.md:
+# Portfolio Optimizer
+Professional Markowitz mean-variance portfolio optimization with interactive Streamlit dashboard.
+
+## Methodology
+- Modern Portfolio Theory (Markowitz, 1952)  
+- Scipy constrained optimization for Sharpe maximization
+- Efficient Frontier via Monte Carlo sampling
+- Benchmark comparison vs S&P 500
+
+## Tech Stack
+Python 3.11 | Streamlit | PyPortfolioOpt | yfinance | Plotly
+
+## How to Run
+pip install -r requirements.txt
+streamlit run app.py
+
+## Author
+Wilfried LAWSON HELLU | Finance Analyst | wilfriedlawpro@gmail.com | github.com/Wxlly00
+
+=== PROJECT 2: 02-lbo-model ===
+
+requirements.txt:
+pandas>=2.0.0
+numpy>=1.24.0
+openpyxl>=3.1.0
+tabulate>=0.9.0
+
+lbo_model.py — Complete working LBO model:
+
+# LBO Model — TechRetail SA
+# Entry assumptions
+company_name = "TechRetail SA"
+entry_ev = 450_000_000  # EUR 450M
+entry_ebitda = 60_000_000  # EUR 60M at 7.5x
+entry_multiple = 7.5
+revenue_y0 = 300_000_000
+ebitda_margin_y0 = 0.20
+revenue_cagr = 0.08
+margin_expansion = 0.01  # +1% per year
+capex_pct = 0.03
+wc_change_pct = 0.01
+da_pct = 0.04
+tax_rate = 0.28
+holding_years = 5
+
+# Debt structure
+senior_debt = 247_500_000  # 55% of EV at 6%
+senior_rate = 0.06
+mezz_debt = 67_500_000   # 15% of EV at 10%
+mezz_rate = 0.10
+equity = 135_000_000      # 30% of EV
+
+Build year-by-year projections for 5 years:
+- Income statement: Revenue, EBITDA, DA, EBIT, Senior Interest, Mezz Interest, EBT, Tax, Net Income
+- Debt schedule: Opening Senior, Mandatory repayment 5% pa, Closing Senior; Mezzanine PIK (no cash interest, accrues to principal)
+- Cash flow: EBITDA - Capex - WC change - Cash Interest - Tax = Free Cash Flow to Debt
+- Debt paydown: use FCF to repay senior first, then mezz
+
+Exit analysis (3 scenarios):
+- Bear case: 6.0x exit multiple
+- Base case: 7.5x exit multiple  
+- Bull case: 9.0x exit multiple
+
+For each scenario calculate:
+- Exit EV = Exit multiple x Year 5 EBITDA
+- Total debt at exit (remaining)
+- Equity value = Exit EV - Total Debt
+- Equity MOIC = Exit Equity / Entry Equity
+- IRR = (Exit Equity / Entry Equity)^(1/5) - 1
+- DPI = Exit Equity / Entry Equity (same as MOIC for single investment)
+
+Print all tables using tabulate with headers.
+Save to lbo_output.xlsx with openpyxl: 3 sheets (Income Statement, Debt Schedule, Returns Summary).
+
+README.md:
+# LBO Model — Private Equity Analysis
+End-to-end Leveraged Buyout financial model with multi-scenario returns analysis.
+
+## Deal Structure
+- Target: TechRetail SA | Entry EV: EUR 450M | Entry Multiple: 7.5x EBITDA
+- Debt: Senior 55% LTV @ 6% + Mezzanine 15% @ 10% PIK | Equity: 30%
+- Holding Period: 5 years | Exit Scenarios: Bear/Base/Bull
+
+## Model Components
+- Income Statement with margin expansion assumptions
+- Debt amortization schedule (senior mandatory + FCF sweep)
+- Cash flow waterfall
+- Multi-scenario exit analysis (IRR, MOIC, DPI)
+
+## Tech Stack
+Python 3.11 | pandas | openpyxl | tabulate
+
+## How to Run
+pip install -r requirements.txt
+python lbo_model.py
+
+## Author
+Wilfried LAWSON HELLU | Finance Analyst | wilfriedlawpro@gmail.com
+
+=== PROJECT 3: 03-dcf-engine ===
+
+requirements.txt:
+yfinance>=0.2.18
+pandas>=2.0.0
+numpy>=1.24.0
+streamlit>=1.28.0
+plotly>=5.18.0
+
+dcf_engine.py:
+Functions:
+- get_stock_data(ticker): returns dict with revenue list, ebitda list, capex list, da list, net_debt, shares_outstanding, current_price, beta using yfinance
+- calculate_historical_fcff(data): EBIT*(1-tax_rate) + DA - Capex - delta_NWC for last 4 years
+- estimate_wacc(beta, risk_free=0.045, equity_premium=0.055, debt_rate=0.05, debt_ratio=0.3, tax_rate=0.28): CAPM
+- project_fcff(base_fcff, growth_rate_1, growth_rate_2, terminal_growth, years_stage1=5, years_stage2=5): returns list
+- dcf_valuation(fcff_list, terminal_fcff, wacc, terminal_growth, net_debt, shares): returns intrinsic value per share
+- sensitivity_table(base_wacc, base_tgr, net_debt, shares, base_fcff): DataFrame WACC rows x terminal growth cols
+
+app.py — Streamlit:
+Title: "DCF Valuation Engine"
+Sidebar: Ticker input (default: AAPL), Stage 1 growth (slider 0-30%, default 10%), Stage 2 growth (slider 0-20%, default 6%), Terminal growth (slider 0-5%, default 2.5%), WACC override checkbox + slider
+Button: "Run Valuation"
+Output:
+- 3 metric cards: Intrinsic Value | Current Price | Upside/Downside
+- Color badge: green if upside >10%, red if downside >10%, yellow otherwise
+- Bar chart: FCF projections over 10 years + terminal value contribution (plotly)
+- Heatmap table: sensitivity (WACC 8-14% vs terminal growth 1-4%), green=undervalued red=overvalued
+
+README.md:
+# DCF Valuation Engine
+Automated Discounted Cash Flow valuation engine with live financial data integration.
+
+## Methodology
+- Free Cash Flow to Firm (FCFF) approach
+- 2-stage DCF: explicit projection (10 years) + terminal value (Gordon Growth)
+- WACC via CAPM for cost of equity + after-tax cost of debt
+- Sensitivity analysis: WACC vs terminal growth rate matrix
+
+## Tech Stack
+Python 3.11 | Streamlit | yfinance | Plotly | pandas
+
+## How to Run
+pip install -r requirements.txt
+streamlit run app.py
+
+## Author
+Wilfried LAWSON HELLU | Finance Analyst | wilfriedlawpro@gmail.com
+
+=== PROJECT 4: 04-var-dashboard ===
+
+requirements.txt:
+yfinance>=0.2.18
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+streamlit>=1.28.0
+plotly>=5.18.0
+
+var_calculator.py:
+class PortfolioVaR:
+    def __init__(self, tickers, weights):
+        self.tickers = tickers
+        self.weights = weights
+        
+    def get_returns(self, start, end):
+        # download prices, calculate log returns, return portfolio returns series
+        
+    def historical_var(self, returns, confidence=0.95, horizon=1):
+        # percentile of portfolio returns distribution
+        
+    def parametric_var(self, returns, confidence=0.95, horizon=1):
+        # normal distribution: mean - z*std, scale by sqrt(horizon)
+        
+    def monte_carlo_var(self, returns, confidence=0.95, horizon=1, n_sims=10000):
+        # Cholesky decomposition of covariance matrix
+        # simulate n_sims scenarios
+        # return VaR at confidence level
+        
+    def expected_shortfall(self, returns, confidence=0.95):
+        # average of losses beyond VaR threshold
+        
+    def stress_test(self, returns, scenario):
+        # scenarios: "2008 Crisis", "2020 Covid", "2022 Rate Shock"
+        # filter returns to that period, calculate portfolio loss
+
+app.py — Streamlit:
+Default portfolio: JPM 25%, GS 20%, BLK 20%, MS 20%, V 15% (financial sector focus)
+Sidebar: weight sliders, confidence level radio (95% / 99%), horizon radio (1-day / 10-day / 1-month), lookback period slider (1-3 years)
+Tab "VaR Summary": 3x3 table (method x confidence level) + gauge chart showing current 1-day 95% VaR
+Tab "Return Distribution": Plotly histogram of daily returns, red vertical line at VaR, orange at ES, normal distribution overlay
+Tab "Monte Carlo": 200 simulated paths (semi-transparent), P&L distribution at horizon, stats box
+Tab "Correlations": Plotly heatmap of asset correlation matrix, diverging color scale
+
+README.md:
+# VaR Risk Dashboard
+Portfolio Value-at-Risk calculator implementing Historical, Parametric, and Monte Carlo methods.
+
+## Methodology
+- Historical VaR: empirical percentile of past P&L distribution
+- Parametric VaR: normal distribution assumption with mean-variance
+- Monte Carlo VaR: Cholesky decomposition for correlated asset simulation (10,000 paths)
+- Expected Shortfall (CVaR): average loss beyond VaR threshold
+
+## Tech Stack
+Python 3.11 | Streamlit | scipy | numpy | Plotly
+
+## How to Run
+pip install -r requirements.txt
+streamlit run app.py
+
+## Author
+Wilfried LAWSON HELLU | Risk Analysis | wilfriedlawpro@gmail.com
+
+=== PROJECT 5: 05-esg-tool ===
+
+requirements.txt:
+pandas>=2.0.0
+numpy>=1.24.0
+streamlit>=1.28.0
+plotly>=5.18.0
+
+esg_screener.py:
+Create sample data for 20 companies. Use real company names. For each:
+- Company, Sector, Country
+- Environmental scores (0-100): Carbon intensity, Renewable energy, Water management, Waste reduction
+- Social scores (0-100): Employee satisfaction, Diversity index, Community programs, Supply chain ethics
+- Governance scores (0-100): Board independence, Exec pay transparency, Shareholder rights, Anti-corruption
+
+Companies (realistic score ranges based on known ESG reputations):
+LVMH (Luxury, FR) - good overall
+BNP Paribas (Finance, FR) - good governance
+TotalEnergies (Energy, FR) - weak E, ok G
+Danone (Food, FR) - strong S and E
+Schneider Electric (Industrial, FR) - ESG leader
+Air Liquide (Chemical, FR) - strong overall
+L'Oreal (Consumer, FR) - strong S
+Sanofi (Healthcare, FR) - strong overall
+Airbus (Aerospace, FR) - moderate
+Renault (Auto, FR) - weak E
+Volkswagen (Auto, DE) - weak E+G
+Deutsche Bank (Finance, DE) - weak G
+Siemens (Industrial, DE) - strong overall
+Unilever (Consumer, UK) - ESG leader
+Shell (Energy, UK) - weak E
+BP (Energy, UK) - weak E
+HSBC (Finance, UK) - moderate
+Nestle (Food, CH) - mixed
+Novartis (Pharma, CH) - strong
+ABB (Industrial, CH) - strong
+
+ESGScorer class:
+- weights dict: E, S, G (default 0.4, 0.3, 0.3)
+- composite_score(company_data): weighted average of sub-scores
+- classify(score): "ESG Leader" >75, "Average" 50-75, "Laggard" <50
+- screen(data, min_score, sectors_to_exclude): return filtered DataFrame
+- portfolio_esg(selected_companies, weights): weighted average ESG profile
+
+app.py — Streamlit:
+Sidebar: E/S/G weight sliders (must sum to 100%), min ESG threshold, sector exclusion multiselect
+Tab "Universe": sortable table (name, sector, E, S, G, Composite, Classification) with color-coded Classification badges
+Tab "Heatmap": plotly imshow heatmap — companies (rows) x ESG criteria (cols), green=high red=low
+Tab "Company Profile": company dropdown, radar/spider chart for E, S, G sub-scores, written narrative
+Tab "Portfolio Builder": multiselect companies, enter weights, show weighted ESG profile + comparison to universe avg
+
+README.md:
+# ESG Scoring Tool
+Multi-criteria ESG screening and scoring framework for equity investment analysis.
+
+## Methodology
+- Custom weighting: Environmental (40%), Social (30%), Governance (30%)
+- Sub-criteria scoring across 12 dimensions
+- Classification: ESG Leaders, Average, Laggards
+- Portfolio ESG profile construction
+
+## Tech Stack
+Python 3.11 | Streamlit | pandas | Plotly
+
+## How to Run
+pip install -r requirements.txt
+streamlit run app.py
+
+## Author
+Wilfried LAWSON HELLU | Finance Analyst | wilfriedlawpro@gmail.com
+
+=== PROJECT 6: 06-credit-dashboard ===
+
+requirements.txt:
+pandas>=2.0.0
+numpy>=1.24.0
+streamlit>=1.28.0
+plotly>=5.18.0
+
+credit_analyzer.py:
+SAMPLE_COMPANIES dict with 5 pre-loaded companies:
+{
+  "Alpha Corp (Investment Grade)": {
+    "revenue": 2_500_000_000,
+    "ebitda": 500_000_000,
+    "ebit": 380_000_000,
+    "interest_expense": 45_000_000,
+    "total_debt": 750_000_000,
+    "total_equity": 1_800_000_000,
+    "current_assets": 650_000_000,
+    "current_liabilities": 280_000_000,
+    "debt_service": 120_000_000,  # principal + interest
+    "total_assets": 3_200_000_000,
+    "retained_earnings": 900_000_000,
+    "working_capital": 370_000_000,
+    "market_cap": 4_500_000_000,
+    "sales": 2_500_000_000
+  },
+  ... (add 4 more with progressively worse metrics for BB, B, CCC, D ratings)
+}
+
+CreditAnalyzer class:
+- calculate_ratios(data): returns dict with:
+  debt_ebitda, interest_coverage, current_ratio, debt_equity, dscr, net_leverage
+- altman_z_score(data): Z = 1.2*X1 + 1.4*X2 + 3.3*X3 + 0.6*X4 + 1.0*X5
+  X1=WC/TA, X2=RE/TA, X3=EBIT/TA, X4=MarketCap/TotalDebt, X5=Sales/TA
+- internal_rating(ratios): scoring model mapping ratios to AAA/AA/A/BBB/BB/B/CCC/D
+- default_probability(z_score): lookup table (Z>2.99 safe, 1.81-2.99 grey, <1.81 distress)
+- generate_report(name, data): full dict with ratios, rating, z_score, pd, narrative
+
+app.py — Streamlit:
+Title: "Credit Analysis Dashboard"
+Mode selector: "Pre-loaded Companies" or "Manual Input"
+
+Pre-loaded mode:
+- Dropdown: select company
+- Show result immediately
+
+Manual mode:
+- Form with financial inputs (all the data fields above)
+- Submit button
+
+Output display (same for both modes):
+- Header card: Company name + Traffic light (green=IG, yellow=BB, red=B/CCC/D) + Rating badge
+- 4-column metrics: Debt/EBITDA | Interest Coverage | Current Ratio | Altman Z-Score
+- "Key Ratios vs Benchmarks" table: ratio | value | IG benchmark | status emoji (green/yellow/red)
+  IG benchmarks: Debt/EBITDA <3x, Interest Coverage >4x, Current Ratio >1.5x, D/E <1x
+- Radar chart: 6 dimensions (Leverage, Coverage, Liquidity, Profitability, Debt Service, Z-Score), normalized 0-10
+- Risk Summary text box: auto-generated 3-4 sentence assessment based on rating
+
+README.md:
+# Credit Analysis Dashboard
+Credit risk assessment tool implementing key financial ratios, Altman Z-Score, and internal rating methodology.
+
+## Methodology
+- Key ratio analysis: Debt/EBITDA, Interest Coverage, DSCR, Leverage
+- Altman Z-Score (1968) with distress zone classification
+- Internal rating model: AAA to D scale
+- Estimated default probability from Z-Score
+
+## Tech Stack
+Python 3.11 | Streamlit | pandas | Plotly
+
+## How to Run
+pip install -r requirements.txt
+streamlit run app.py
+
+## Author
+Wilfried LAWSON HELLU | Fixed Income & Credit | wilfriedlawpro@gmail.com
+
+=== AFTER ALL 6 PROJECTS ===
+For each project, in its directory:
+git init
+git add .
+git commit -m "feat: [project name] - professional finance tool by Wilfried LAWSON HELLU"
+
+Then notify:
+openclaw system event --text "Done: 6 Python finance projects complete at /Users/mac/portfolio-wilfried/projects/" --mode now
