@@ -1,385 +1,131 @@
+// translations.ts
 export type Lang = "en" | "fr";
 
-export const translations = {
-  en: {
-    nav: {
-      about: "About",
-      experience: "Experience",
-      projects: "Projects",
-      skills: "Skills",
-      contact: "Get in touch →",
-    },
-    hero: {
-      badge: "Open to internship · March – July 2026",
-      title1: "Wilfried",
-      title2: "LAWSON HELLU",
-      subtitle: "Finance Analyst — Asset Management & Corporate Finance",
-      location: "Université Paris-Saclay · Paris, France",
-      bio: "Combining institutional finance (BIDC, SGI-TOGO) with entrepreneurship (€500K revenue) and quantitative research — I build tools that turn complex financial data into actionable insights.",
-      cta1: "View Projects",
-      cta2: "Download CV",
-      chartTitle: "FAANG Portfolio",
-      chartLabel: "vs S&P 500",
-      scroll: "scroll",
-      available: "🟢 Available March 2026",
-      stats: [
-        { value: "€500K+", label: "Revenue Managed" },
-        { value: "2", label: "Finance Internships" },
-        { value: "4+", label: "Years Trading" },
-        { value: "6", label: "Quant Projects" },
-      ],
-    },
-    about: {
-      tag: "// about",
-      title: "About Me",
-      p1: "With hands-on experience at the BIDC — the ECOWAS regional development bank — and SGI-TOGO in West African debt capital markets, I bring a rare perspective combining institutional finance with frontier market expertise.",
-      p2: "As founder of Papyrus Distributions, I managed a business generating over €500K in cumulative revenue — overseeing full P&L, treasury, banking relationships, and navigating judicial liquidation following a major client default.",
-      p3: "Currently at Université Paris-Saclay, building quantitative skills through projects in portfolio optimization, risk modeling, DCF, LBO, and ESG analysis.",
-      p4: "4+ years of personal macro and technical trading complement my analytical work — giving me a practitioner's instinct on top of academic rigor.",
-      tags: ["Asset Management", "Corporate Finance", "DCM", "Portfolio Theory", "UEMOA Markets", "Risk Analysis"],
-      stats: [
-        { value: "€500K+", label: "Revenue Managed", color: "#22c55e" },
-        { value: "2", label: "Finance Internships", color: "#0ea5e9" },
-        { value: "4+ yrs", label: "Macro Trading", color: "#a78bfa" },
-        { value: "UEMOA", label: "Market Expertise", color: "#f59e0b" },
-      ],
-    },
-    experience: {
-      tag: "// experience",
-      title: "Experience",
-      subtitle: "Professional journey in finance & entrepreneurship",
-      items: [
-        {
-          company: "BIDC — Banque d'Investissement et de Développement de la CEDEAO",
-          role: "Analyst Intern — Research & Strategy",
-          location: "Lomé, Togo",
-          period: "July 2025 — September 2025",
-          badge: "Development Banking",
-          bullets: [
-            "Modeled Single Obligor Limit (SOL) framework per Basel III standards, optimizing maximum counterparty exposure for the regional development bank",
-            "Produced investment committee briefings supporting structured financing decisions across the ECOWAS region",
-            "Contributed to regional strategic plan development through quantitative data analysis and macroeconomic synthesis",
-          ],
-        },
-        {
-          company: "SGI-TOGO — Société de Gestion et d'Intermédiation",
-          role: "Junior Analyst — Capital Markets",
-          location: "Lomé, Togo",
-          period: "April 2025 — June 2025",
-          badge: "Capital Markets",
-          bullets: [
-            "Participated in structuring bond issuances and commercial paper (TCN) for corporate and sovereign issuers",
-            "Conducted credit analysis: financial ratio assessment, repayment capacity modeling, and dossier preparation",
-            "Crafted pitch decks and investment teasers targeting UEMOA institutional investors for private placements",
-          ],
-        },
-        {
-          company: "Papyrus Distributions",
-          role: "Founder & CEO",
-          location: "Paris, France",
-          period: "May 2023 — March 2025",
-          badge: "Entrepreneurship",
-          bullets: [
-            "Built and managed P&L of a business generating €500K+ in cumulative revenue from inception",
-            "Optimized working capital and banking relationships; improved net profitability by +15%",
-            "Managed judicial liquidation following major client default: impact analysis, liability management, full account closure",
-          ],
-        },
-      ],
-    },
-    education: {
-      tag: "// education",
-      title: "Education",
-      subtitle: "Academic foundation in economics & finance",
-      items: [
-        {
-          school: "Université Paris-Saclay",
-          location: "Sceaux, France",
-          degree: "Licence Économie-Gestion — Applied Economics",
-          period: "2021 — Present",
-          status: "In Progress",
-          courses: ["Advanced Macroeconomics", "Industrial Economics", "Statistics & Data Analysis", "International Economics"],
-        },
-        {
-          school: "École Alpha",
-          location: "Lomé, Togo",
-          degree: "Baccalauréat Général — Mention Bien",
-          period: "June 2021",
-          status: "Graduated",
-          courses: ["Mathematics", "Economics", "Geopolitics"],
-        },
-      ],
-    },
-    projects: {
-      tag: "// projects",
-      title: "Featured Projects",
-      subtitle: "Quantitative finance tools with real-world case studies",
-      viewGithub: "View on GitHub",
-      caseStudy: "Case Study",
-      items: [
-        {
-          title: "Portfolio Optimizer",
-          category: "Asset Management",
-          description: "Markowitz mean-variance optimization with real market data. Efficient frontier, Sharpe maximization, Monte Carlo simulation of 1,000+ portfolios.",
-          caseStudy: { company: "FAANG 2019–2023", metric: "Sharpe 1.84 vs 0.91" },
-        },
-        {
-          title: "LBO Model",
-          category: "Private Equity",
-          description: "End-to-end Leveraged Buyout model — debt waterfall, 5Y cash flow projections, IRR/MOIC across bear, base, and bull exit scenarios.",
-          caseStudy: { company: "Twitter/Musk $44Bn", metric: "IRR –12% base case" },
-        },
-        {
-          title: "DCF Valuation Engine",
-          category: "Corporate Finance",
-          description: "Automated DCF pulling live data via API. Intrinsic value, WACC sensitivity tables, margin-of-safety analysis.",
-          caseStudy: { company: "Apple Q4 2023", metric: "$178 intrinsic vs $189 market" },
-        },
-        {
-          title: "VaR Risk Dashboard",
-          category: "Risk Management",
-          description: "Historical, Parametric & Monte Carlo VaR (10K simulations). Interactive stress testing, portfolio Greeks, tail-risk decomposition.",
-          caseStudy: { company: "SVB March 2023", metric: "95% VaR breach $18Bn+" },
-        },
-        {
-          title: "ESG Scoring Tool",
-          category: "Sustainable Finance",
-          description: "Multi-criteria ESG framework. Weighted E/S/G scoring, radar visualization, automated CAC40 screening and rebalancing signals.",
-          caseStudy: { company: "CAC40 screening", metric: "TotalEnergies 38 vs Schneider 91" },
-        },
-        {
-          title: "Credit Analysis Dashboard",
-          category: "Fixed Income",
-          description: "Financial ratio analysis, Altman Z-Score, internal rating model (AAA → D), traffic-light risk visualization.",
-          caseStudy: { company: "WeWork 2022–2023", metric: "Z-Score 0.9 → Chapter 11" },
-        },
-      ],
-    },
-    skills: {
-      tag: "// skills",
-      title: "Expertise",
-      subtitle: "Built through education, internships, and personal projects",
-      categories: [
-        { title: "Financial Modeling", skills: [{ name: "DCF & Valuation", level: 90 }, { name: "LBO Modeling", level: 85 }, { name: "Budget & Forecasting", level: 88 }, { name: "Sensitivity Analysis", level: 85 }] },
-        { title: "Data Analysis", skills: [{ name: "Python / Pandas", level: 82 }, { name: "Excel VBA / Power Query", level: 90 }, { name: "SQL", level: 75 }, { name: "Power BI / Tableau", level: 72 }] },
-        { title: "Capital Markets", skills: [{ name: "Portfolio Management", level: 85 }, { name: "Technical Analysis", level: 88 }, { name: "Fixed Income / DCM", level: 82 }, { name: "Derivatives", level: 70 }] },
-        { title: "Quantitative Finance", skills: [{ name: "Portfolio Optimization", level: 80 }, { name: "Monte Carlo Sim.", level: 78 }, { name: "Time Series", level: 72 }, { name: "Risk Modeling", level: 80 }] },
-        { title: "Tools & Platforms", skills: [{ name: "Bloomberg Terminal", level: 75 }, { name: "FactSet", level: 70 }, { name: "Git / GitHub", level: 80 }, { name: "Streamlit", level: 85 }] },
-        { title: "Programming", skills: [{ name: "Python", level: 82 }, { name: "VBA", level: 88 }, { name: "SQL", level: 75 }, { name: "R", level: 65 }] },
-      ],
-    },
-    contact: {
-      tag: "// contact",
-      title: "Let's Talk",
-      subtitle: "Open to internship opportunities in asset management, corporate finance, or capital markets starting March 2026.",
-      emailLabel: "Email",
-      locationLabel: "Location",
-      location: "Paris, France · Université Paris-Saclay",
-      form: {
-        name: "Full Name",
-        namePlaceholder: "Your name",
-        email: "Email",
-        emailPlaceholder: "your@email.com",
-        subject: "Subject",
-        subjectPlaceholder: "Internship opportunity — Spring 2026",
-        message: "Message",
-        messagePlaceholder: "Tell me about the opportunity...",
-        send: "Send Message",
-      },
-    },
-    footer: {
-      copy: "© 2026 Wilfried LAWSON HELLU",
-    },
-  },
+// ────────────────────────────────────────────────
+// On définit la forme de référence à partir de l'anglais
+// ────────────────────────────────────────────────
 
-  fr: {
-    nav: {
-      about: "À propos",
-      experience: "Expérience",
-      projects: "Projets",
-      skills: "Compétences",
-      contact: "Me contacter →",
-    },
-    hero: {
-      badge: "Disponible pour stage · Mars – Juillet 2026",
-      title1: "Wilfried",
-      title2: "LAWSON HELLU",
-      subtitle: "Analyste Finance — Gestion d'Actifs & Finance d'Entreprise",
-      location: "Université Paris-Saclay · Paris, France",
-      bio: "Alliance entre finance institutionnelle (BIDC, SGI-TOGO), entrepreneuriat (CA 500K€) et recherche quantitative — je construis des outils qui transforment des données financières complexes en insights actionnables.",
-      cta1: "Voir les projets",
-      cta2: "Télécharger le CV",
-      chartTitle: "Portefeuille FAANG",
-      chartLabel: "vs S&P 500",
-      scroll: "défiler",
-      available: "🟢 Disponible mars 2026",
-      stats: [
-        { value: "500K€+", label: "CA géré" },
-        { value: "2", label: "Stages finance" },
-        { value: "4+", label: "Ans de trading" },
-        { value: "6", label: "Projets quant" },
-      ],
-    },
-    about: {
-      tag: "// à propos",
-      title: "À propos de moi",
-      p1: "Fort d'une expérience à la BIDC — la banque de développement régionale de la CEDEAO — et à SGI-TOGO sur les marchés de capitaux ouest-africains, j'apporte une perspective rare alliant finance institutionnelle et expertise sur les marchés émergents.",
-      p2: "En tant que fondateur de Papyrus Distributions, j'ai géré une entreprise générant plus de 500K€ de chiffre d'affaires cumulé — supervisant le P&L complet, la trésorerie, les relations bancaires, et gérant une liquidation judiciaire suite à un défaut client majeur.",
-      p3: "Actuellement à l'Université Paris-Saclay, je développe mes compétences quantitatives via des projets en optimisation de portefeuille, modélisation des risques, DCF, LBO et analyse ESG.",
-      p4: "4+ années de trading macro et technique personnel complètent mon approche analytique — m'apportant un instinct de praticien en plus de la rigueur académique.",
-      tags: ["Gestion d'actifs", "Finance d'entreprise", "DCM", "Théorie du portefeuille", "Marchés UEMOA", "Analyse des risques"],
-      stats: [
-        { value: "500K€+", label: "CA géré", color: "#22c55e" },
-        { value: "2", label: "Stages finance", color: "#0ea5e9" },
-        { value: "4+ ans", label: "Trading macro", color: "#a78bfa" },
-        { value: "UEMOA", label: "Expertise marché", color: "#f59e0b" },
-      ],
-    },
-    experience: {
-      tag: "// expérience",
-      title: "Expérience",
-      subtitle: "Parcours professionnel en finance & entrepreneuriat",
-      items: [
-        {
-          company: "BIDC — Banque d'Investissement et de Développement de la CEDEAO",
-          role: "Analyste Stagiaire — Recherche & Stratégie",
-          location: "Lomé, Togo",
-          period: "Juillet 2025 — Septembre 2025",
-          badge: "Banque de développement",
-          bullets: [
-            "Modélisation du cadre Single Obligor Limit (SOL) selon les normes Bâle III, optimisant l'exposition maximale aux contreparties de la banque régionale",
-            "Rédaction de notes de comité d'investissement appuyant les décisions de financement structuré dans la zone CEDEAO",
-            "Contribution au plan stratégique régional via l'analyse quantitative de données et la synthèse macroéconomique",
-          ],
-        },
-        {
-          company: "SGI-TOGO — Société de Gestion et d'Intermédiation",
-          role: "Analyste Junior — Marchés des Capitaux",
-          location: "Lomé, Togo",
-          period: "Avril 2025 — Juin 2025",
-          badge: "Marchés de capitaux",
-          bullets: [
-            "Participation à la structuration d'émissions obligataires et de Titres de Créances Négociables pour émetteurs corporate et souverains",
-            "Analyse crédit : évaluation de ratios financiers, modélisation de la capacité de remboursement, préparation des dossiers",
-            "Élaboration de pitch decks et mémorandums d'investissement ciblant les institutionnels UEMOA pour des placements privés",
-          ],
-        },
-        {
-          company: "Papyrus Distributions",
-          role: "Fondateur & Directeur Général",
-          location: "Paris, France",
-          period: "Mai 2023 — Mars 2025",
-          badge: "Entrepreneuriat",
-          bullets: [
-            "Création et gestion du P&L d'une entreprise générant 500K€+ de CA cumulé depuis sa création",
-            "Optimisation du BFR et des relations bancaires ; amélioration de la rentabilité nette de +15%",
-            "Gestion de la liquidation judiciaire suite à un défaut client majeur : analyse d'impact, gestion du passif, clôture comptable",
-          ],
-        },
-      ],
-    },
-    education: {
-      tag: "// formation",
-      title: "Formation",
-      subtitle: "Socle académique en économie & finance",
-      items: [
-        {
-          school: "Université Paris-Saclay",
-          location: "Sceaux, France",
-          degree: "Licence Économie-Gestion — Économie Appliquée",
-          period: "2021 — En cours",
-          status: "En cours",
-          courses: ["Macroéconomie avancée", "Économie industrielle", "Statistiques & Analyse de données", "Économie internationale"],
-        },
-        {
-          school: "École Alpha",
-          location: "Lomé, Togo",
-          degree: "Baccalauréat Général — Mention Bien",
-          period: "Juin 2021",
-          status: "Obtenu",
-          courses: ["Mathématiques", "Économie", "Géopolitique"],
-        },
-      ],
-    },
-    projects: {
-      tag: "// projets",
-      title: "Projets phares",
-      subtitle: "Outils de finance quantitative avec études de cas réelles",
-      viewGithub: "Voir sur GitHub",
-      caseStudy: "Étude de cas",
-      items: [
-        {
-          title: "Optimiseur de Portefeuille",
-          category: "Gestion d'actifs",
-          description: "Optimisation moyenne-variance de Markowitz sur données réelles. Frontière efficiente, maximisation du ratio de Sharpe, simulation Monte Carlo de 1 000+ portefeuilles.",
-          caseStudy: { company: "FAANG 2019–2023", metric: "Sharpe 1,84 vs 0,91" },
-        },
-        {
-          title: "Modèle LBO",
-          category: "Private Equity",
-          description: "Modèle LBO complet — cascade de dette, projections de cash-flows sur 5 ans, analyse IRR/MOIC en scénarios baissier, central et haussier.",
-          caseStudy: { company: "Twitter/Musk 44Mds$", metric: "TRI –12% scénario central" },
-        },
-        {
-          title: "Moteur de Valorisation DCF",
-          category: "Finance d'entreprise",
-          description: "DCF automatisé récupérant les données en temps réel via API. Valeur intrinsèque, tableaux de sensibilité WACC, analyse de marge de sécurité.",
-          caseStudy: { company: "Apple T4 2023", metric: "178$ intrinsèque vs 189$ marché" },
-        },
-        {
-          title: "Dashboard VaR & Risques",
-          category: "Gestion des risques",
-          description: "Calcul de VaR Historique, Paramétrique & Monte Carlo (10K simulations). Stress testing interactif, grecques du portefeuille, décomposition du risque de queue.",
-          caseStudy: { company: "SVB mars 2023", metric: "Dépassement VaR 95% : +18Mds$" },
-        },
-        {
-          title: "Outil de Scoring ESG",
-          category: "Finance durable",
-          description: "Cadre ESG multicritères. Score pondéré E/S/G, visualisation radar, screening automatisé du CAC40 et signaux de rebalancement.",
-          caseStudy: { company: "Screening CAC40", metric: "TotalEnergies 38 vs Schneider 91" },
-        },
-        {
-          title: "Dashboard Analyse Crédit",
-          category: "Revenu fixe",
-          description: "Analyse de ratios financiers, Score Z d'Altman, modèle de rating interne (AAA → D), visualisation risque par feux tricolores.",
-          caseStudy: { company: "WeWork 2022–2023", metric: "Z-Score 0,9 → Chapitre 11" },
-        },
-      ],
-    },
-    skills: {
-      tag: "// compétences",
-      title: "Expertise",
-      subtitle: "Développées au fil de la formation, des stages et des projets personnels",
-      categories: [
-        { title: "Modélisation financière", skills: [{ name: "DCF & Valorisation", level: 90 }, { name: "Modélisation LBO", level: 85 }, { name: "Budget & Prévisions", level: 88 }, { name: "Analyse de sensibilité", level: 85 }] },
-        { title: "Analyse de données", skills: [{ name: "Python / Pandas", level: 82 }, { name: "Excel VBA / Power Query", level: 90 }, { name: "SQL", level: 75 }, { name: "Power BI / Tableau", level: 72 }] },
-        { title: "Marchés de capitaux", skills: [{ name: "Gestion de portefeuille", level: 85 }, { name: "Analyse technique", level: 88 }, { name: "Revenu fixe / DCM", level: 82 }, { name: "Produits dérivés", level: 70 }] },
-        { title: "Finance quantitative", skills: [{ name: "Optimisation portefeuille", level: 80 }, { name: "Simulation Monte Carlo", level: 78 }, { name: "Séries temporelles", level: 72 }, { name: "Modélisation du risque", level: 80 }] },
-        { title: "Outils & Plateformes", skills: [{ name: "Bloomberg Terminal", level: 75 }, { name: "FactSet", level: 70 }, { name: "Git / GitHub", level: 80 }, { name: "Streamlit", level: 85 }] },
-        { title: "Programmation", skills: [{ name: "Python", level: 82 }, { name: "VBA", level: 88 }, { name: "SQL", level: 75 }, { name: "R", level: 65 }] },
-      ],
-    },
-    contact: {
-      tag: "// contact",
-      title: "Parlons-nous",
-      subtitle: "Disponible pour des opportunités de stage en gestion d'actifs, finance d'entreprise ou marchés de capitaux à partir de mars 2026.",
-      emailLabel: "Email",
-      locationLabel: "Localisation",
-      location: "Paris, France · Université Paris-Saclay",
-      form: {
-        name: "Nom complet",
-        namePlaceholder: "Votre nom",
-        email: "Email",
-        emailPlaceholder: "votre@email.com",
-        subject: "Objet",
-        subjectPlaceholder: "Opportunité de stage — Printemps 2026",
-        message: "Message",
-        messagePlaceholder: "Parlez-moi de l'opportunité...",
-        send: "Envoyer",
-      },
-    },
-    footer: {
-      copy: "© 2026 Wilfried LAWSON HELLU",
-    },
+export const en = {
+  nav: {
+    about: "About",
+    experience: "Experience",
+    projects: "Projects",
+    skills: "Skills",
+    contact: "Get in touch →",
   },
+  hero: {
+    badge: "Open to internship · March – July 2026",
+    title1: "Wilfried",
+    title2: "LAWSON HELLU",
+    subtitle: "Finance Analyst — Asset Management & Corporate Finance",
+    location: "Université Paris-Saclay · Paris, France",
+    bio: "Combining institutional finance (BIDC, SGI-TOGO) with entrepreneurship (€500K revenue) and quantitative research — I build tools that turn complex financial data into actionable insights.",
+    cta1: "View Projects",
+    cta2: "Download CV",
+    chartTitle: "FAANG Portfolio",
+    chartLabel: "vs S&P 500",
+    scroll: "scroll",
+    available: "🟢 Available March 2026",
+    stats: [
+      { value: "€500K+", label: "Revenue Managed" },
+      { value: "2", label: "Finance Internships" },
+      { value: "4+", label: "Years Trading" },
+      { value: "6", label: "Quant Projects" },
+    ],
+  },
+  about: {
+    tag: "// about",
+    title: "About Me",
+    p1: "With hands-on experience at the BIDC — the ECOWAS regional development bank — and SGI-TOGO in West African debt capital markets, I bring a rare perspective combining institutional finance with frontier market expertise.",
+    p2: "As founder of Papyrus Distributions, I managed a business generating over €500K in cumulative revenue — overseeing full P&L, treasury, banking relationships, and navigating judicial liquidation following a major client default.",
+    p3: "Currently at Université Paris-Saclay, building quantitative skills through projects in portfolio optimization, risk modeling, DCF, LBO, and ESG analysis.",
+    p4: "4+ years of personal macro and technical trading complement my analytical work — giving me a practitioner's instinct on top of academic rigor.",
+    tags: ["Asset Management", "Corporate Finance", "DCM", "Portfolio Theory", "UEMOA Markets", "Risk Analysis"],
+    stats: [
+      { value: "€500K+", label: "Revenue Managed", color: "#22c55e" },
+      { value: "2", label: "Finance Internships", color: "#0ea5e9" },
+      { value: "4+ yrs", label: "Macro Trading", color: "#a78bfa" },
+      { value: "UEMOA", label: "Market Expertise", color: "#f59e0b" },
+    ],
+  },
+  // ... (le reste de l'anglais reste IDENTIQUE à ce que tu avais)
+  experience: { /* ton code experience EN */ },
+  education: { /* ton code education EN */ },
+  projects: { /* ton code projects EN */ },
+  skills: { /* ton code skills EN */ },
+  contact: { /* ton code contact EN */ },
+  footer: {
+    copy: "© 2026 Wilfried LAWSON HELLU",
+  },
+} as const;
+
+// On crée le type de référence
+export type Translations = typeof en;
+
+// ────────────────────────────────────────────────
+// Français : on force le respect de la forme anglaise
+// ────────────────────────────────────────────────
+
+export const fr: Translations = {
+  nav: {
+    about: "À propos",
+    experience: "Expérience",
+    projects: "Projets",
+    skills: "Compétences",
+    contact: "Me contacter →",
+  },
+  hero: {
+    badge: "Disponible pour stage · Mars – Juillet 2026",
+    title1: "Wilfried",
+    title2: "LAWSON HELLU",
+    subtitle: "Analyste Finance — Gestion d'Actifs & Finance d'Entreprise",
+    location: "Université Paris-Saclay · Paris, France",
+    bio: "Alliance entre finance institutionnelle (BIDC, SGI-TOGO), entrepreneuriat (CA 500K€) et recherche quantitative — je construis des outils qui transforment des données financières complexes en insights actionnables.",
+    cta1: "Voir les projets",
+    cta2: "Télécharger le CV",
+    chartTitle: "Portefeuille FAANG",
+    chartLabel: "vs S&P 500",
+    scroll: "défiler",
+    available: "🟢 Disponible mars 2026",
+    stats: [
+      { value: "500K€+", label: "CA géré" },
+      { value: "2", label: "Stages finance" },
+      { value: "4+", label: "Ans de trading" },
+      { value: "6", label: "Projets quant" },
+    ],
+  },
+  about: {
+    tag: "// à propos",
+    title: "À propos de moi",
+    p1: "Fort d'une expérience à la BIDC — la banque de développement régionale de la CEDEAO — et à SGI-TOGO sur les marchés de capitaux ouest-africains, j'apporte une perspective rare alliant finance institutionnelle et expertise sur les marchés émergents.",
+    p2: "En tant que fondateur de Papyrus Distributions, j'ai géré une entreprise générant plus de 500K€ de chiffre d'affaires cumulé — supervisant le P&L complet, la trésorerie, les relations bancaires, et gérant une liquidation judiciaire suite à un défaut client majeur.",
+    p3: "Actuellement à l'Université Paris-Saclay, je développe mes compétences quantitatives via des projets en optimisation de portefeuille, modélisation des risques, DCF, LBO et analyse ESG.",
+    p4: "4+ années de trading macro et technique personnel complètent mon approche analytique — m'apportant un instinct de praticien en plus de la rigueur académique.",
+    tags: ["Gestion d'actifs", "Finance d'entreprise", "DCM", "Théorie du portefeuille", "Marchés UEMOA", "Analyse des risques"],
+    stats: [
+      { value: "500K€+", label: "CA géré", color: "#22c55e" },
+      { value: "2", label: "Stages finance", color: "#0ea5e9" },
+      { value: "4+ ans", label: "Trading macro", color: "#a78bfa" },
+      { value: "UEMOA", label: "Expertise marché", color: "#f59e0b" },
+    ],
+  },
+  // ... mets ici TOUTES les autres sections en français (experience, education, projects, skills, contact, footer)
+  // exactement comme dans ton ancien code, sans rien changer aux valeurs
+  experience: { /* ton experience FR */ },
+  education: { /* ton education FR */ },
+  projects: { /* ton projects FR */ },
+  skills: { /* ton skills FR */ },
+  contact: { /* ton contact FR */ },
+  footer: {
+    copy: "© 2026 Wilfried LAWSON HELLU",
+  },
+};
+
+// ────────────────────────────────────────────────
+// Export final groupé
+// ────────────────────────────────────────────────
+
+export const translations = {
+  en,
+  fr,
 } as const;
