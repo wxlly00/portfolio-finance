@@ -1,231 +1,280 @@
 "use client";
 import { motion } from "framer-motion";
-import { Download, Github, Linkedin, Mail, ArrowRight, MapPin } from "lucide-react";
+import { Download, ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { useEffect, useRef } from "react";
+
+/* Animated candlestick chart */
+function CandlestickChart() {
+  const candles = [
+    { o: 60, h: 75, l: 55, c: 70, bull: true },
+    { o: 70, h: 80, l: 65, c: 65, bull: false },
+    { o: 65, h: 72, l: 58, c: 72, bull: true },
+    { o: 72, h: 85, l: 68, c: 80, bull: true },
+    { o: 80, h: 88, l: 72, c: 74, bull: false },
+    { o: 74, h: 82, l: 70, c: 82, bull: true },
+    { o: 82, h: 90, l: 78, c: 88, bull: true },
+    { o: 88, h: 92, l: 80, c: 82, bull: false },
+    { o: 82, h: 86, l: 74, c: 78, bull: false },
+    { o: 78, h: 88, l: 75, c: 86, bull: true },
+    { o: 86, h: 95, l: 82, c: 93, bull: true },
+    { o: 93, h: 98, l: 88, c: 90, bull: false },
+  ];
+
+  const H = 120;
+  const W = 300;
+  const min = 50;
+  const max = 100;
+  const scale = (v: number) => H - ((v - min) / (max - min)) * H;
+  const cw = 16;
+  const gap = 8;
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full h-full" preserveAspectRatio="none">
+      {/* Grid lines */}
+      {[0, 0.25, 0.5, 0.75, 1].map((t, i) => (
+        <line key={i} x1="0" y1={t * H} x2={W} y2={t * H} stroke="rgba(255,255,255,0.05)" strokeWidth="1" />
+      ))}
+      {/* Candles */}
+      {candles.map((c, i) => {
+        const x = i * (cw + gap) + 4;
+        const color = c.bull ? "#22c55e" : "#f43f5e";
+        const bodyTop = Math.min(scale(c.o), scale(c.c));
+        const bodyH = Math.abs(scale(c.o) - scale(c.c)) || 2;
+        const xMid = x + cw / 2;
+        return (
+          <motion.g
+            key={i}
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={{ opacity: 1, scaleY: 1 }}
+            transition={{ delay: i * 0.08, duration: 0.4 }}
+            style={{ transformOrigin: `${xMid}px ${H}px` }}
+          >
+            {/* Wick */}
+            <line x1={xMid} y1={scale(c.h)} x2={xMid} y2={scale(c.l)} stroke={color} strokeWidth="1.5" />
+            {/* Body */}
+            <rect x={x} y={bodyTop} width={cw} height={bodyH} fill={color} rx="2" opacity="0.9" />
+          </motion.g>
+        );
+      })}
+    </svg>
+  );
+}
+
+const stats = [
+  { value: "€500K+", label: "Revenue Managed" },
+  { value: "2", label: "Finance Internships" },
+  { value: "4+", label: "Years Trading" },
+  { value: "6", label: "Quant Projects" },
+];
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black px-6 py-32">
-      {/* Animated background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Grid pattern */}
-        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-
-        {/* Moving orb 1 */}
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-          animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.2, 1] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-        />
-        {/* Moving orb 2 */}
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"
-          animate={{ x: [0, -100, 0], y: [0, -50, 0], scale: [1, 1.3, 1] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-        />
+    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ paddingTop: "7rem" }}>
+      {/* Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff04_1px,transparent_1px),linear-gradient(to_bottom,#ffffff04_1px,transparent_1px)] bg-[size:60px_60px]" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-sky-600/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-emerald-600/8 rounded-full blur-[100px]" />
       </div>
 
-      <div className="max-w-7xl w-full mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full py-16">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
 
-          {/* ── Left column ── */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            {/* Badge + Name + Subtitle */}
+          {/* Left */}
+          <div>
+            {/* Status badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium mb-8"
+              style={{ background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.2)", color: "#22c55e" }}
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm mb-6 backdrop-blur-sm">
-                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                Available for Internship · March – July 2026
-              </div>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Open to internship · March – July 2026
+            </motion.div>
 
-              <h1 className="text-6xl lg:text-7xl mb-6 leading-tight">
-                <span className="text-white">Wilfried</span>{" "}
-                <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+            {/* Name */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <h1 className="text-[clamp(2.5rem,5vw,4rem)] leading-[1.05] tracking-tight mb-3">
+                <span className="text-white">Wilfried</span>
+                <br />
+                <span
+                  className="bg-clip-text text-transparent"
+                  style={{ backgroundImage: "linear-gradient(135deg, #0ea5e9 0%, #38bdf8 40%, #22c55e 100%)" }}
+                >
                   LAWSON HELLU
                 </span>
               </h1>
-
-              <p className="text-2xl text-gray-400 leading-relaxed">
-                Finance Analyst · Asset Management &amp; Corporate Finance
+              <p className="text-lg text-white/40 font-light mt-4">
+                Finance Analyst — Asset Management & Corporate Finance
+              </p>
+              <p className="text-sm text-white/30 mt-1">
+                Université Paris-Saclay · Paris, France
               </p>
             </motion.div>
 
-            {/* Description */}
-            <motion.div
+            {/* Bio */}
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="space-y-2"
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="mt-6 text-white/50 leading-relaxed max-w-lg text-[15px]"
             >
-              <p className="text-lg text-gray-500 leading-relaxed max-w-xl">
-                Passionné par la finance et les données, je transforme des analyses complexes
-                en insights actionnables. Spécialiste en modélisation financière, gestion de
-                portefeuille et analyse quantitative.
-              </p>
-              <div className="flex items-center gap-2 text-gray-600 text-sm pt-1">
-                <MapPin size={13} className="text-blue-400" />
-                Paris, France · Université Paris-Saclay
-              </div>
-            </motion.div>
+              Combining institutional finance (BIDC, SGI-TOGO) with entrepreneurship (€500K revenue)
+              and quantitative research — I build tools that turn complex financial data into
+              actionable insights.
+            </motion.p>
 
-            {/* CTA buttons */}
+            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4"
+              transition={{ duration: 0.5, delay: 0.35 }}
+              className="flex flex-wrap gap-3 mt-8"
             >
               <a
                 href="#projects"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="group inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold transition-all duration-200 shadow-lg shadow-blue-500/30"
+                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white transition-all duration-200"
+                style={{ background: "linear-gradient(135deg, #0ea5e9, #22c55e)", boxShadow: "0 4px 24px rgba(14,165,233,0.25)" }}
+                onClick={e => { e.preventDefault(); document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" }); }}
               >
                 View Projects
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="/cv.pdf"
                 download
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white font-semibold hover:bg-white/10 hover:border-blue-500/30 transition-all duration-200 backdrop-blur-sm"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 bg-white/5 hover:bg-white/8 transition-all duration-200"
               >
-                <Download size={16} />
+                <Download size={14} />
                 Download CV
               </a>
             </motion.div>
 
-            {/* Social links */}
+            {/* Social */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="flex gap-4 pt-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="flex items-center gap-3 mt-6"
             >
               {[
-                { href: "https://linkedin.com/in/wilfried-lawsonhellu", Icon: Linkedin, label: "LinkedIn" },
-                { href: "https://github.com/Wxlly00", Icon: Github, label: "GitHub" },
-                { href: "mailto:wilfriedlawpro@gmail.com", Icon: Mail, label: "Email" },
-              ].map(({ href, Icon, label }) => (
-                <motion.a
+                { Icon: Linkedin, href: "https://linkedin.com/in/wilfried-lawsonhellu", label: "LinkedIn" },
+                { Icon: Github, href: "https://github.com/Wxlly00", label: "GitHub" },
+                { Icon: Mail, href: "mailto:wilfriedlawpro@gmail.com", label: "Email" },
+              ].map(({ Icon, href, label }) => (
+                <a
                   key={label}
                   href={href}
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   aria-label={label}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-3 bg-white/5 rounded-full border border-white/10 hover:bg-white/10 hover:border-blue-500/50 transition-all"
+                  className="p-2 rounded-lg text-white/30 hover:text-white/80 hover:bg-white/5 border border-transparent hover:border-white/10 transition-all"
                 >
-                  <Icon size={18} className="text-gray-400" />
-                </motion.a>
+                  <Icon size={16} />
+                </a>
               ))}
             </motion.div>
-          </motion.div>
+          </div>
 
-          {/* ── Right column — glassmorphism card + floating stats ── */}
+          {/* Right — data panel */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
             className="relative hidden lg:block"
           >
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              className="relative"
+            {/* Terminal window */}
+            <div
+              className="rounded-2xl overflow-hidden"
+              style={{
+                background: "rgba(255,255,255,0.02)",
+                border: "1px solid rgba(255,255,255,0.07)",
+                boxShadow: "0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03)",
+              }}
             >
-              {/* Glowing border blur */}
-              <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500 via-cyan-500 to-blue-600 rounded-3xl blur-2xl opacity-30" />
+              {/* Terminal header */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
+                  <div className="w-3 h-3 rounded-full bg-[#28c840]" />
+                </div>
+                <span className="text-xs text-white/20 font-mono ml-2">portfolio_analysis.py</span>
+              </div>
 
-              {/* Main card */}
-              <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-blue-950/50 to-cyan-950/50 backdrop-blur-xl">
-                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500/10 to-cyan-500/10" />
-                {/* Decorative inner grid */}
-                <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:2rem_2rem]" />
-
-                {/* Center monogram */}
-                <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
-                  <div className="w-36 h-36 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-600/20 border border-blue-500/20 flex items-center justify-center">
-                    <span className="text-4xl bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-bold">
-                      WLH
-                    </span>
+              {/* Chart */}
+              <div className="p-5">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <p className="text-xs text-white/30 font-mono uppercase tracking-wider">FAANG Portfolio</p>
+                    <p className="text-xl font-mono text-white mt-0.5">+184.2% <span className="text-emerald-400 text-sm">↑ Sharpe 1.84</span></p>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-xs text-white/30 font-mono">vs S&P 500</p>
+                    <p className="text-sm font-mono text-white/40">+91.0% <span className="text-white/30">Sharpe 0.91</span></p>
                   </div>
                 </div>
-
-                {/* Finance tags scattered */}
-                <div className="absolute bottom-8 left-0 right-0 flex flex-wrap justify-center gap-2 px-8">
-                  {["Asset Management", "Corporate Finance", "DCM", "UEMOA", "Quant"].map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-3 py-1 text-xs rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 backdrop-blur-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                <div className="h-[140px] w-full">
+                  <CandlestickChart />
+                </div>
+                <div className="flex justify-between mt-3 text-xs font-mono text-white/20">
+                  <span>Jan 2019</span>
+                  <span>Dec 2023</span>
                 </div>
               </div>
-            </motion.div>
 
-            {/* Floating stat card — bottom left */}
+              {/* Stats row */}
+              <div className="grid grid-cols-4 border-t border-white/5">
+                {stats.map((s, i) => (
+                  <motion.div
+                    key={s.label}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 + i * 0.1 }}
+                    className="p-4 text-center border-r border-white/5 last:border-r-0"
+                  >
+                    <p
+                      className="text-lg font-mono font-semibold bg-clip-text text-transparent"
+                      style={{ backgroundImage: "linear-gradient(135deg, #0ea5e9, #22c55e)" }}
+                    >
+                      {s.value}
+                    </p>
+                    <p className="text-xs text-white/30 mt-0.5 leading-tight">{s.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Floating badge */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1 }}
-              className="absolute -bottom-8 -left-8 bg-black/80 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl"
+              className="absolute -top-5 -right-5 px-3 py-2 rounded-xl text-xs font-mono text-emerald-400 border border-emerald-500/20"
+              style={{ background: "rgba(34,197,94,0.08)" }}
             >
-              <p className="text-3xl mb-1 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-bold">
-                4+
-              </p>
-              <p className="text-sm text-gray-500">Years of Trading</p>
-            </motion.div>
-
-            {/* Floating stat card — top right */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
-              className="absolute -top-8 -right-8 bg-black/80 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-2xl"
-            >
-              <p className="text-3xl mb-1 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-bold">
-                6
-              </p>
-              <p className="text-sm text-gray-500">Finance Projects</p>
+              🟢 Available March 2026
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Mobile stats row */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
-          className="lg:hidden grid grid-cols-2 gap-4 mt-12"
-        >
-          {[
-            { value: "4+", label: "Years of Trading" },
-            { value: "6", label: "Finance Projects" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center p-5 rounded-2xl bg-white/5 border border-white/10">
-              <p className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-1">
-                {stat.value}
-              </p>
-              <p className="text-xs text-gray-500">{stat.label}</p>
-            </div>
-          ))}
-        </motion.div>
       </div>
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+      {/* Scroll hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+      >
+        <span className="text-xs text-white/20 font-mono">scroll</span>
+        <div className="w-px h-8 bg-gradient-to-b from-white/20 to-transparent" />
+      </motion.div>
     </section>
   );
 }

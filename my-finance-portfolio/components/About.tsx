@@ -1,115 +1,69 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { DollarSign, Building2, TrendingUp } from "lucide-react";
 
-const statCards = [
-  { value: "€500K+", label: "Revenue Managed", icon: DollarSign },
-  { value: "2", label: "Finance Internships", icon: Building2 },
-  { value: "4+ yrs", label: "Macro Trading", icon: TrendingUp },
+const stats = [
+  { value: "€500K+", label: "Revenue Managed", color: "#22c55e" },
+  { value: "2", label: "Finance Internships", color: "#0ea5e9" },
+  { value: "4+ yrs", label: "Macro Trading", color: "#a78bfa" },
+  { value: "UEMOA", label: "Market Expertise", color: "#f59e0b" },
 ];
-
-const tags = ["Asset Management", "Corporate Finance", "Risk Management", "DCM", "Portfolio Optimization", "UEMOA Markets"];
 
 export default function About() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="about" className="py-28 px-6 bg-black relative overflow-hidden">
-      {/* Grid bg */}
-      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+    <section id="about" className="py-28 px-6 relative overflow-hidden bg-[#030712]">
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:60px_60px]" />
 
       <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-16"
-        >
-          <div className="inline-block px-4 py-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 rounded-full text-sm mb-5 backdrop-blur-sm">
-            About
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white">About Me</h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}} className="mb-16">
+          <p className="text-xs font-mono text-sky-400 uppercase tracking-widest mb-3">// about</p>
+          <h2 className="text-4xl lg:text-5xl text-white tracking-tight">About Me</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
-          {/* Left — avatar + stats */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="flex flex-col items-center"
-          >
-            <div className="w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center mb-8 border border-blue-500/20 relative overflow-hidden"
-              style={{ background: "radial-gradient(circle at 50% 50%, #1e3a5f33, #000000)" }}
-            >
-              <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-600/20 to-cyan-600/10" />
-              <span className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent relative z-10">
-                WLH
-              </span>
-            </div>
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          {/* Bio */}
+          <motion.div initial={{ opacity: 0, x: -24 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6 }} className="space-y-4 text-[15px] text-white/50 leading-relaxed">
+            <p>
+              With hands-on experience at the <span className="text-sky-400">BIDC</span> — the ECOWAS regional development bank — and <span className="text-sky-400">SGI-TOGO</span> in West African debt capital markets, I bring a rare perspective combining institutional finance with frontier market expertise.
+            </p>
+            <p>
+              As founder of Papyrus Distributions, I managed a business generating over <span className="text-emerald-400 font-medium">€500K in cumulative revenue</span> — overseeing full P&L, treasury, banking relationships, and navigating judicial liquidation following a major client default.
+            </p>
+            <p>
+              Currently at <span className="text-sky-400">Université Paris-Saclay</span>, building quantitative skills through projects in portfolio optimization, risk modeling, DCF, LBO, and ESG analysis.
+            </p>
+            <p>
+              4+ years of personal macro and technical trading complement my analytical work — giving me a practitioner&apos;s instinct on top of academic rigor.
+            </p>
 
-            {/* Stat cards */}
-            <div className="grid grid-cols-3 gap-3 w-full max-w-xs">
-              {statCards.map((stat, i) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                    className="rounded-2xl p-3 text-center bg-white/5 border border-white/10 backdrop-blur-sm hover:border-blue-500/20 transition-all"
-                  >
-                    <div className="flex justify-center mb-2">
-                      <div className="p-1.5 rounded-lg bg-blue-500/10">
-                        <Icon size={12} className="text-blue-400" />
-                      </div>
-                    </div>
-                    <div className="text-blue-400 font-bold text-sm">{stat.value}</div>
-                    <div className="text-gray-500 text-xs leading-tight mt-1">{stat.label}</div>
-                  </motion.div>
-                );
-              })}
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 pt-2">
+              {["Asset Management", "Corporate Finance", "DCM", "Portfolio Theory", "UEMOA Markets", "Risk Analysis"].map(tag => (
+                <span key={tag} className="text-xs px-2.5 py-1 rounded-lg font-mono text-white/30" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                  {tag}
+                </span>
+              ))}
             </div>
           </motion.div>
 
-          {/* Right — bio */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            <div className="space-y-5 text-gray-400 leading-relaxed">
-              <p>
-                With hands-on experience at the{" "}
-                <span className="text-blue-400 font-medium">BIDC — the ECOWAS regional development bank</span>
-                {" "}and SGI-TOGO in West African debt capital markets, I bring a unique perspective combining institutional finance with frontier market expertise.
-              </p>
-              <p>
-                As founder of Papyrus Distributions, I managed a business generating over{" "}
-                <span className="text-blue-400 font-medium">€500K in cumulative revenue</span>,
-                overseeing full P&amp;L, treasury, and banking relationships — including navigating a judicial liquidation following a major client default.
-              </p>
-              <p>
-                Currently pursuing my degree at{" "}
-                <span className="text-blue-400 font-medium">Université Paris-Saclay</span>
-                {" "}and actively building quantitative finance skills through personal projects in portfolio optimization, risk modeling, and valuation.
-              </p>
-              <p>
-                4+ years of personal macro and technical trading round out my analytical toolkit — giving me a market practitioner&apos;s instinct alongside my academic rigor.
-              </p>
-            </div>
-
-            {/* Tags */}
-            <div className="flex flex-wrap gap-2 mt-8">
-              {tags.map((tag) => (
-                <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium border border-blue-500/20 text-blue-400 bg-blue-500/10">
-                  {tag}
-                </span>
+          {/* Stats */}
+          <motion.div initial={{ opacity: 0, x: 24 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.6, delay: 0.1 }}>
+            <div className="grid grid-cols-2 gap-4">
+              {stats.map(({ value, label, color }, i) => (
+                <motion.div
+                  key={label}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.2 + i * 0.1 }}
+                  className="p-5 rounded-2xl"
+                  style={{ background: `${color}08`, border: `1px solid ${color}20` }}
+                >
+                  <p className="text-2xl font-mono font-bold" style={{ color }}>{value}</p>
+                  <p className="text-xs text-white/40 mt-1">{label}</p>
+                </motion.div>
               ))}
             </div>
           </motion.div>
