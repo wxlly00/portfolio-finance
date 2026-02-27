@@ -99,7 +99,7 @@ export default function Hero() {
 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="flex items-center gap-2 mt-6">
               {[
-                { Icon: Linkedin, href: "https://linkedin.com/in/wilfried-lawsonhellu", label: "LinkedIn" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/in/wilfried-lawson-hellu-227a09127", label: "LinkedIn" },
                 { Icon: Github, href: "https://github.com/Wxlly00", label: "GitHub" },
                 { Icon: Mail, href: "mailto:wilfriedlawpro@gmail.com", label: "Email" },
               ].map(({ Icon, href, label }) => (

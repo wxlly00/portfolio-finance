@@ -39,7 +39,7 @@ export default function Contact() {
             ))}
             <div className="flex gap-3 pt-2">
               {[
-                { Icon: Linkedin, href: "https://linkedin.com/in/wilfried-lawsonhellu", label: "LinkedIn", color: "#0ea5e9" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/in/wilfried-lawson-hellu-227a09127", label: "LinkedIn", color: "#0ea5e9" },
                 { Icon: Github, href: "https://github.com/Wxlly00", label: "GitHub", color: "#a78bfa" },
                 { Icon: Mail, href: "mailto:wilfriedlawpro@gmail.com", label: "Email", color: "#22c55e" },
               ].map(({ Icon, href, label, color }) => (
