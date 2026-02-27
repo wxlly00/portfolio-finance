@@ -1,15 +1,11 @@
-// translations.ts
 export type Lang = "en" | "fr";
 
-// ────────────────────────────────────────────────
-// On définit la forme de référence à partir de l'anglais
-// ────────────────────────────────────────────────
-
-export const en = {
+const en = {
   nav: {
     about: "About",
     experience: "Experience",
     projects: "Projects",
+    visuals: "Visuals",
     skills: "Skills",
     contact: "Get in touch →",
   },
@@ -48,29 +44,203 @@ export const en = {
       { value: "UEMOA", label: "Market Expertise", color: "#f59e0b" },
     ],
   },
-  // ... (le reste de l'anglais reste IDENTIQUE à ce que tu avais)
-  experience: { /* ton code experience EN */ },
-  education: { /* ton code education EN */ },
-  projects: { /* ton code projects EN */ },
-  skills: { /* ton code skills EN */ },
-  contact: { /* ton code contact EN */ },
-  footer: {
-    copy: "© 2026 Wilfried LAWSON HELLU",
+  experience: {
+    tag: "// experience",
+    title: "Work Experience",
+    subtitle: "Institutional finance, frontier markets and entrepreneurship across West Africa & Europe.",
+    items: [
+      {
+        role: "Financial Analyst Intern",
+        company: "BIDC — ECOWAS Bank",
+        period: "Jun – Sep 2024",
+        location: "Lomé, Togo",
+        badge: "Development Banking",
+        description: "Analysis of regional development project financing at the ECOWAS investment bank.",
+        bullets: [
+          "Financial modeling and due diligence on infrastructure projects ($50M+)",
+          "Preparation of credit memos and investment committee presentations",
+          "Monitoring of regional loan portfolio (UEMOA/CEDEAO zone)",
+          "Market research on West African sovereign bond markets",
+        ],
+        accent: "#0ea5e9",
+        status: "Completed",
+      },
+      {
+        role: "Capital Markets Analyst Intern",
+        company: "SGI-TOGO",
+        period: "Jun – Sep 2023",
+        location: "Lomé, Togo",
+        badge: "Debt Capital Markets",
+        description: "Fixed income and DCM operations at the leading Togolese securities firm.",
+        bullets: [
+          "Participation in T-bill and government bond issuances on the UEMOA market",
+          "Preparation of client investment reports and market analyses",
+          "Tracking primary market activity and secondary trading",
+          "Daily monitoring of BCEAO rates and regional liquidity conditions",
+        ],
+        accent: "#22c55e",
+        status: "Completed",
+      },
+      {
+        role: "Founder & Managing Director",
+        company: "Papyrus Distributions",
+        period: "2019 – 2022",
+        location: "Togo",
+        badge: "Entrepreneurship",
+        description: "Founded and managed a distribution company generating €500K+ cumulative revenue.",
+        bullets: [
+          "Full P&L management, treasury and cash flow forecasting",
+          "Banking relationship management and financing negotiation",
+          "Team management (8 employees) and supply chain optimization",
+          "Navigated judicial liquidation following major client default",
+        ],
+        accent: "#f59e0b",
+        status: "Concluded",
+      },
+    ],
   },
-} as const;
+  education: {
+    tag: "// education",
+    title: "Education",
+    subtitle: "Finance studies in Paris combining quantitative methods with international market exposure.",
+    items: [
+      {
+        degree: "Master's in Finance",
+        school: "Université Paris-Saclay",
+        period: "2024 – 2026",
+        location: "Paris, France",
+        status: "In Progress",
+        statusColor: "#22c55e",
+        description: "Specialization in Asset Management and Corporate Finance. Quantitative methods, financial modeling, portfolio theory.",
+        courses: ["Portfolio Management", "Derivatives", "Financial Econometrics", "Corporate Valuation", "Risk Management", "ESG Finance"],
+        accent: "#0ea5e9",
+      },
+      {
+        degree: "Bachelor's in Economics & Management",
+        school: "Université de Lomé",
+        period: "2019 – 2022",
+        location: "Lomé, Togo",
+        status: "Completed",
+        statusColor: "#a78bfa",
+        description: "Foundations in macroeconomics, financial analysis, and accounting. Graduated with distinction.",
+        courses: ["Macroeconomics", "Financial Accounting", "Statistics", "Business Law", "Microfinance"],
+        accent: "#a78bfa",
+      },
+    ],
+  },
+  projects: {
+    tag: "// projects",
+    title: "Finance Projects",
+    subtitle: "Python tools applying quantitative finance to real-world cases — Bloomberg data, Streamlit dashboards.",
+    viewGithub: "View on GitHub",
+    items: [
+      {
+        title: "Portfolio Optimizer",
+        category: "Asset Management",
+        description: "Markowitz efficient frontier, Sharpe ratio optimization and Monte Carlo simulation on FAANG portfolio. Real-time Yahoo Finance data.",
+        caseStudy: { company: "FAANG Portfolio", metric: "Sharpe 1.84 vs S&P 0.91" },
+      },
+      {
+        title: "LBO Model",
+        category: "Private Equity",
+        description: "Full Leveraged Buyout model with deal structuring, debt waterfall, IRR sensitivity analysis and management rollover.",
+        caseStudy: { company: "Twitter/Musk Deal", metric: "$44Bn acquisition modeled" },
+      },
+      {
+        title: "DCF Valuation Engine",
+        category: "Corporate Finance",
+        description: "Automated DCF valuation with WACC computation, football field chart, sensitivity table and peer multiple benchmarking.",
+        caseStudy: { company: "Apple Inc. AAPL", metric: "Intrinsic value vs market price" },
+      },
+      {
+        title: "VaR Risk Dashboard",
+        category: "Risk Management",
+        description: "Value-at-Risk engine (Historical, Parametric, Monte Carlo) with backtesting, stress testing and tail risk decomposition.",
+        caseStudy: { company: "SVB Stress Test", metric: "$18Bn+ loss scenario" },
+      },
+      {
+        title: "ESG Scoring Tool",
+        category: "Sustainable Finance",
+        description: "Multi-criteria ESG scoring model with radar chart visualization and gap analysis across CAC40 companies.",
+        caseStudy: { company: "CAC40 Screening", metric: "TotalEnergies vs Schneider" },
+      },
+      {
+        title: "Credit Analysis Dashboard",
+        category: "Fixed Income",
+        description: "Altman Z-Score credit model, internal rating system with probability-of-default estimation and early warning signals.",
+        caseStudy: { company: "WeWork Case Study", metric: "Distress detected 14mo early" },
+      },
+    ],
+  },
+  skills: {
+    tag: "// skills",
+    title: "Skills & Tools",
+    subtitle: "Technical and financial skills built through internships, projects and self-directed learning.",
+    categories: [
+      {
+        title: "Finance",
+        color: "#0ea5e9",
+        skills: [
+          { name: "Financial Modeling (DCF, LBO)", level: 90 },
+          { name: "Portfolio Management", level: 85 },
+          { name: "Risk Analysis (VaR, Stress Test)", level: 80 },
+          { name: "Fixed Income / DCM", level: 75 },
+          { name: "ESG Analysis", level: 70 },
+        ],
+      },
+      {
+        title: "Quantitative",
+        color: "#22c55e",
+        skills: [
+          { name: "Python (pandas, numpy, scipy)", level: 85 },
+          { name: "Statistics & Econometrics", level: 80 },
+          { name: "Monte Carlo Simulation", level: 75 },
+          { name: "Bloomberg Terminal", level: 70 },
+          { name: "Excel / VBA", level: 90 },
+        ],
+      },
+      {
+        title: "Tech",
+        color: "#a78bfa",
+        skills: [
+          { name: "Streamlit / Data Visualization", level: 80 },
+          { name: "SQL / Data Analysis", level: 70 },
+          { name: "Git / GitHub", level: 75 },
+          { name: "PowerPoint / Pitch Decks", level: 85 },
+        ],
+      },
+    ],
+  },
+  contact: {
+    tag: "// contact",
+    title: "Get in Touch",
+    subtitle: "Open to internship opportunities in Asset Management or Corporate Finance starting March 2026.",
+    emailLabel: "Email",
+    locationLabel: "Location",
+    location: "Paris, France · Université Paris-Saclay",
+    form: {
+      name: "Name",
+      namePlaceholder: "Your name",
+      email: "Email",
+      emailPlaceholder: "your@email.com",
+      subject: "Subject",
+      subjectPlaceholder: "Internship opportunity / Collaboration",
+      message: "Message",
+      messagePlaceholder: "Tell me about the opportunity...",
+      send: "Send Message",
+    },
+  },
+  footer: {
+    copy: "© 2026 Wilfried LAWSON HELLU — Finance Analyst",
+  },
+};
 
-// On crée le type de référence
-export type Translations = typeof en;
-
-// ────────────────────────────────────────────────
-// Français : on force le respect de la forme anglaise
-// ────────────────────────────────────────────────
-
-export const fr: Translations = {
+const fr: typeof en = {
   nav: {
     about: "À propos",
     experience: "Expérience",
     projects: "Projets",
+    visuals: "Visuels",
     skills: "Compétences",
     contact: "Me contacter →",
   },
@@ -109,23 +279,195 @@ export const fr: Translations = {
       { value: "UEMOA", label: "Expertise marché", color: "#f59e0b" },
     ],
   },
-  // ... mets ici TOUTES les autres sections en français (experience, education, projects, skills, contact, footer)
-  // exactement comme dans ton ancien code, sans rien changer aux valeurs
-  experience: { /* ton experience FR */ },
-  education: { /* ton education FR */ },
-  projects: { /* ton projects FR */ },
-  skills: { /* ton skills FR */ },
-  contact: { /* ton contact FR */ },
+  experience: {
+    tag: "// expérience",
+    title: "Expériences professionnelles",
+    subtitle: "Finance institutionnelle, marchés frontières et entrepreneuriat en Afrique de l'Ouest & Europe.",
+    items: [
+      {
+        role: "Analyste Financier Stagiaire",
+        company: "BIDC — Banque de la CEDEAO",
+        period: "Juin – Sep 2024",
+        location: "Lomé, Togo",
+        badge: "Banque de développement",
+        description: "Analyse du financement de projets de développement régionaux à la banque d'investissement de la CEDEAO.",
+        bullets: [
+          "Modélisation financière et due diligence sur projets d'infrastructure (50M$+)",
+          "Préparation de mémos de crédit et présentations au comité d'investissement",
+          "Suivi du portefeuille de prêts régionaux (zone UEMOA/CEDEAO)",
+          "Études de marché sur les marchés obligataires souverains ouest-africains",
+        ],
+        accent: "#0ea5e9",
+        status: "Terminé",
+      },
+      {
+        role: "Analyste Marchés de Capitaux Stagiaire",
+        company: "SGI-TOGO",
+        period: "Juin – Sep 2023",
+        location: "Lomé, Togo",
+        badge: "Marchés de capitaux",
+        description: "Opérations de dette et marchés de capitaux (DCM) au sein de la principale société de bourse togolaise.",
+        bullets: [
+          "Participation aux émissions de bons du Trésor et obligations d'État sur le marché UEMOA",
+          "Préparation de rapports d'investissement clients et analyses de marché",
+          "Suivi de l'activité du marché primaire et des transactions secondaires",
+          "Veille quotidienne des taux BCEAO et conditions de liquidité régionales",
+        ],
+        accent: "#22c55e",
+        status: "Terminé",
+      },
+      {
+        role: "Fondateur & Directeur Général",
+        company: "Papyrus Distributions",
+        period: "2019 – 2022",
+        location: "Togo",
+        badge: "Entrepreneuriat",
+        description: "Fondation et gestion d'une société de distribution générant plus de 500K€ de CA cumulé.",
+        bullets: [
+          "Gestion complète du P&L, trésorerie et prévisions de flux de trésorerie",
+          "Gestion des relations bancaires et négociation de financements",
+          "Management d'équipe (8 employés) et optimisation de la chaîne d'approvisionnement",
+          "Gestion d'une liquidation judiciaire suite à un défaut client majeur",
+        ],
+        accent: "#f59e0b",
+        status: "Clôturé",
+      },
+    ],
+  },
+  education: {
+    tag: "// formation",
+    title: "Formation",
+    subtitle: "Études finance à Paris alliant méthodes quantitatives et exposition aux marchés internationaux.",
+    items: [
+      {
+        degree: "Master en Finance",
+        school: "Université Paris-Saclay",
+        period: "2024 – 2026",
+        location: "Paris, France",
+        status: "En cours",
+        statusColor: "#22c55e",
+        description: "Spécialisation en Gestion d'Actifs et Finance d'Entreprise. Méthodes quantitatives, modélisation financière, théorie du portefeuille.",
+        courses: ["Gestion de portefeuille", "Produits dérivés", "Économétrie financière", "Valorisation d'entreprise", "Gestion des risques", "Finance ESG"],
+        accent: "#0ea5e9",
+      },
+      {
+        degree: "Licence Économie & Gestion",
+        school: "Université de Lomé",
+        period: "2019 – 2022",
+        location: "Lomé, Togo",
+        status: "Obtenu",
+        statusColor: "#a78bfa",
+        description: "Fondamentaux en macroéconomie, analyse financière et comptabilité. Diplômé avec mention.",
+        courses: ["Macroéconomie", "Comptabilité financière", "Statistiques", "Droit des affaires", "Microfinance"],
+        accent: "#a78bfa",
+      },
+    ],
+  },
+  projects: {
+    tag: "// projets",
+    title: "Projets Finance",
+    subtitle: "Outils Python appliquant la finance quantitative à des cas réels — données Bloomberg, dashboards Streamlit.",
+    viewGithub: "Voir sur GitHub",
+    items: [
+      {
+        title: "Optimiseur de Portefeuille",
+        category: "Gestion d'actifs",
+        description: "Frontière efficiente de Markowitz, optimisation du ratio de Sharpe et simulation Monte Carlo sur portefeuille FAANG. Données Yahoo Finance en temps réel.",
+        caseStudy: { company: "Portefeuille FAANG", metric: "Sharpe 1,84 vs S&P 0,91" },
+      },
+      {
+        title: "Modèle LBO",
+        category: "Private Equity",
+        description: "Modèle LBO complet avec structuration du deal, cascade de dette, analyse de sensibilité IRR et management rollover.",
+        caseStudy: { company: "Deal Twitter/Musk", metric: "Acquisition 44Mds$ modélisée" },
+      },
+      {
+        title: "Moteur de Valorisation DCF",
+        category: "Finance d'entreprise",
+        description: "Valorisation DCF automatisée avec calcul du WACC, football field chart, tableau de sensibilité et benchmarking par multiples comparables.",
+        caseStudy: { company: "Apple Inc. AAPL", metric: "Valeur intrinsèque vs prix marché" },
+      },
+      {
+        title: "Dashboard VaR & Risques",
+        category: "Gestion des risques",
+        description: "Moteur de Value-at-Risk (Historique, Paramétrique, Monte Carlo) avec backtesting, stress testing et décomposition des risques extrêmes.",
+        caseStudy: { company: "Stress Test SVB", metric: "Scénario de perte 18Mds$+" },
+      },
+      {
+        title: "Outil de Scoring ESG",
+        category: "Finance durable",
+        description: "Modèle de scoring ESG multi-critères avec visualisation en radar et analyse des écarts sur les entreprises du CAC40.",
+        caseStudy: { company: "Screening CAC40", metric: "TotalEnergies vs Schneider" },
+      },
+      {
+        title: "Dashboard Analyse Crédit",
+        category: "Revenu fixe",
+        description: "Modèle de crédit Altman Z-Score, système de notation interne avec estimation de la probabilité de défaut et signaux d'alerte précoce.",
+        caseStudy: { company: "Cas WeWork", metric: "Détresse détectée 14 mois avant" },
+      },
+    ],
+  },
+  skills: {
+    tag: "// compétences",
+    title: "Compétences & Outils",
+    subtitle: "Compétences techniques et financières développées via les stages, projets et apprentissage autonome.",
+    categories: [
+      {
+        title: "Finance",
+        color: "#0ea5e9",
+        skills: [
+          { name: "Modélisation financière (DCF, LBO)", level: 90 },
+          { name: "Gestion de portefeuille", level: 85 },
+          { name: "Analyse des risques (VaR, Stress Test)", level: 80 },
+          { name: "Obligations / DCM", level: 75 },
+          { name: "Analyse ESG", level: 70 },
+        ],
+      },
+      {
+        title: "Quantitatif",
+        color: "#22c55e",
+        skills: [
+          { name: "Python (pandas, numpy, scipy)", level: 85 },
+          { name: "Statistiques & Économétrie", level: 80 },
+          { name: "Simulation Monte Carlo", level: 75 },
+          { name: "Terminal Bloomberg", level: 70 },
+          { name: "Excel / VBA", level: 90 },
+        ],
+      },
+      {
+        title: "Tech",
+        color: "#a78bfa",
+        skills: [
+          { name: "Streamlit / Visualisation de données", level: 80 },
+          { name: "SQL / Analyse de données", level: 70 },
+          { name: "Git / GitHub", level: 75 },
+          { name: "PowerPoint / Pitch Decks", level: 85 },
+        ],
+      },
+    ],
+  },
+  contact: {
+    tag: "// contact",
+    title: "Me contacter",
+    subtitle: "Disponible pour des opportunités de stage en Gestion d'Actifs ou Finance d'Entreprise à partir de mars 2026.",
+    emailLabel: "Email",
+    locationLabel: "Localisation",
+    location: "Paris, France · Université Paris-Saclay",
+    form: {
+      name: "Nom",
+      namePlaceholder: "Votre nom",
+      email: "Email",
+      emailPlaceholder: "votre@email.com",
+      subject: "Sujet",
+      subjectPlaceholder: "Offre de stage / Collaboration",
+      message: "Message",
+      messagePlaceholder: "Décrivez-moi l'opportunité...",
+      send: "Envoyer le message",
+    },
+  },
   footer: {
-    copy: "© 2026 Wilfried LAWSON HELLU",
+    copy: "© 2026 Wilfried LAWSON HELLU — Analyste Finance",
   },
 };
 
-// ────────────────────────────────────────────────
-// Export final groupé
-// ────────────────────────────────────────────────
-
-export const translations = {
-  en,
-  fr,
-} as const;
+export const translations = { en, fr } as const;
