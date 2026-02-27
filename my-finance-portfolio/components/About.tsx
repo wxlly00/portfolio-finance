@@ -18,7 +18,7 @@ export default function About() {
   return (
     <section id="about" className="py-28 px-6 bg-black relative overflow-hidden">
       {/* Grid bg */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
@@ -46,7 +46,7 @@ export default function About() {
             <div className="w-48 h-48 md:w-56 md:h-56 rounded-full flex items-center justify-center mb-8 border border-blue-500/20 relative overflow-hidden"
               style={{ background: "radial-gradient(circle at 50% 50%, #1e3a5f33, #000000)" }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-cyan-600/10" />
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-600/20 to-cyan-600/10" />
               <span className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent relative z-10">
                 WLH
               </span>

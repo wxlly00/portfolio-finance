@@ -34,7 +34,7 @@ export default function Education() {
 
   return (
     <section id="education" className="py-28 px-6 bg-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
@@ -63,7 +63,7 @@ export default function Education() {
             >
               <div className={`h-full rounded-3xl bg-white/5 border backdrop-blur-sm p-7 hover:border-blue-500/30 transition-all duration-300 relative overflow-hidden ${edu.highlight ? "border-blue-500/20" : "border-white/10"}`}>
                 {/* Gradient glow on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-300" />
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-300" />
 
                 <div className="relative">
                   <div className="flex items-start justify-between mb-5">

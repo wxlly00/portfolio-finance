@@ -49,7 +49,7 @@ export default function Skills() {
   return (
     <section id="skills" className="py-32 px-6 bg-black relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       <motion.div
         className="absolute top-1/3 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
         animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
@@ -86,7 +86,7 @@ export default function Skills() {
             >
               <div className="h-full p-8 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm hover:border-blue-500/30 transition-all duration-300 relative overflow-hidden">
                 {/* Gradient glow on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
+                <div className={`absolute inset-0 pointer-events-none bg-gradient-to-br ${gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
 
                 <div className="flex items-center gap-4 mb-6 relative">
                   <motion.div

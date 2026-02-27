@@ -24,7 +24,7 @@ export default function Contact() {
       className="py-32 px-6 bg-gradient-to-b from-black via-gray-950 to-black relative overflow-hidden"
     >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
       <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
         {/* Header */}
@@ -108,7 +108,7 @@ export default function Contact() {
             className="lg:col-span-3"
           >
             <div className="p-8 lg:p-10 bg-white/5 rounded-3xl border border-white/10 backdrop-blur-sm relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-cyan-500/5" />
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500/5 to-cyan-500/5" />
 
               <form className="space-y-6 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

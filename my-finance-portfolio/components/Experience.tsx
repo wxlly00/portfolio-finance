@@ -54,7 +54,7 @@ export default function Experience() {
 
   return (
     <section id="experience" className="py-28 px-6 bg-gradient-to-b from-black via-gray-950 to-black relative overflow-hidden">
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="max-w-4xl mx-auto relative z-10" ref={ref}>
@@ -90,7 +90,7 @@ export default function Experience() {
 
                 <div className="rounded-3xl bg-white/5 border border-white/10 p-6 backdrop-blur-sm hover:border-blue-500/30 transition-all duration-300 group">
                   {/* Glow on hover */}
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-300" />
+                  <div className="absolute inset-0 pointer-events-none rounded-3xl bg-gradient-to-br from-blue-500/0 to-cyan-500/0 group-hover:from-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-300" />
 
                   <div className="relative">
                     <div className="flex flex-wrap gap-3 items-start justify-between mb-3">

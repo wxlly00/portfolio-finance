@@ -118,7 +118,7 @@ export default function Projects() {
       className="py-32 px-6 bg-gradient-to-b from-black via-gray-950 to-black relative overflow-hidden"
     >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
       <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
         {/* Header */}
@@ -150,7 +150,7 @@ export default function Projects() {
             >
               <div className="relative overflow-hidden rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:border-blue-500/30 transition-all duration-300">
                 {/* Hover glow */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.accent.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                <div className={`absolute inset-0 pointer-events-none bg-gradient-to-br ${project.accent.glow} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
                 {/* Image */}
                 <div className="aspect-video overflow-hidden relative">

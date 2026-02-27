@@ -6,9 +6,9 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black px-6 py-32">
       {/* Animated background */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
         {/* Moving orb 1 */}
         <motion.div
@@ -144,16 +144,16 @@ export default function Hero() {
               className="relative"
             >
               {/* Glowing border blur */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 via-cyan-500 to-blue-600 rounded-3xl blur-2xl opacity-30" />
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500 via-cyan-500 to-blue-600 rounded-3xl blur-2xl opacity-30" />
 
               {/* Main card */}
               <div className="relative aspect-square rounded-3xl overflow-hidden border border-white/10 bg-gradient-to-br from-blue-950/50 to-cyan-950/50 backdrop-blur-xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10" />
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-blue-500/10 to-cyan-500/10" />
                 {/* Decorative inner grid */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:2rem_2rem]" />
+                <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:2rem_2rem]" />
 
                 {/* Center monogram */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
                   <div className="w-36 h-36 rounded-full bg-gradient-to-br from-blue-600/30 to-cyan-600/20 border border-blue-500/20 flex items-center justify-center">
                     <span className="text-4xl bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent font-bold">
                       WLH
