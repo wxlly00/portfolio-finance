@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Divider from "@/components/Divider";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Education from "@/components/Education";
@@ -12,24 +11,16 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main>
+    <main className="min-h-screen bg-black text-white">
       <Navbar />
       <Hero />
-      <Divider />
       <About />
-      <Divider />
       <Experience />
-      <Divider />
       <Education />
-      <Divider />
       <Projects />
-      <Divider />
       <Gallery />
-      <Divider />
       <Skills />
-      <Divider />
       <Contact />
-      <Divider />
       <Footer />
     </main>
   );
