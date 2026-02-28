@@ -102,6 +102,45 @@ function GaugeChart() {
   );
 }
 
+function ZayaaChart() {
+  const years = ["2025", "2026", "2027"];
+  const revenue = [0, 45, 180];
+  const costs = [28, 62, 120];
+  const maxVal = 180;
+  return (
+    <svg viewBox="0 0 160 100" className="w-full h-full">
+      <defs>
+        <linearGradient id="zg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.4"/>
+          <stop offset="100%" stopColor="#f59e0b" stopOpacity="0.05"/>
+        </linearGradient>
+      </defs>
+      {[20,40,60,80].map((y,i) => <line key={i} x1="18" y1={y} x2="152" y2={y} stroke="rgba(255,255,255,0.05)" strokeWidth="1"/>)}
+      {years.map((yr, i) => {
+        const x = 35 + i * 45;
+        const rh = (revenue[i] / maxVal) * 60;
+        const ch = (costs[i] / maxVal) * 60;
+        return (
+          <g key={i}>
+            <rect x={x-10} y={85-rh} width="9" height={rh} fill="#f59e0b" opacity="0.8" rx="1"/>
+            <rect x={x+1} y={85-ch} width="9" height={ch} fill="#f43f5e" opacity="0.6" rx="1"/>
+            <text x={x} y="95" fill="rgba(255,255,255,0.3)" fontSize="6" fontFamily="monospace" textAnchor="middle">{yr}</text>
+          </g>
+        );
+      })}
+      {/* Break-even line */}
+      <line x1="35" y1="85" x2="125" y2="54" stroke="#22c55e" strokeWidth="1.5" strokeDasharray="3 2"/>
+      <text x="130" y="53" fill="#22c55e" fontSize="5.5" fontFamily="monospace">Break-even</text>
+      {/* Legend */}
+      <rect x="18" y="8" width="6" height="4" fill="#f59e0b" opacity="0.8" rx="0.5"/>
+      <text x="26" y="12" fill="rgba(255,255,255,0.4)" fontSize="5.5" fontFamily="monospace">Revenue</text>
+      <rect x="60" y="8" width="6" height="4" fill="#f43f5e" opacity="0.6" rx="0.5"/>
+      <text x="68" y="12" fill="rgba(255,255,255,0.4)" fontSize="5.5" fontFamily="monospace">COGS</text>
+      <text x="18" y="24" fill="#f59e0b" fontSize="6" fontFamily="monospace">3-Year Business Plan</text>
+    </svg>
+  );
+}
+
 const static_data = [
   { Chart: EfficientFrontierChart, icon: <LineChart size={16}/>, accent: "#0ea5e9", tech: ["Python","PyPortfolioOpt","Streamlit","yfinance"], github: "https://github.com/Wxlly00/portfolio-optimizer" },
   { Chart: WaterfallChart, icon: <BarChart2 size={16}/>, accent: "#a78bfa", tech: ["Python","openpyxl","pandas"], github: "https://github.com/Wxlly00/lbo-model" },
@@ -109,6 +148,7 @@ const static_data = [
   { Chart: VaRChart, icon: <AlertTriangle size={16}/>, accent: "#f43f5e", tech: ["Python","scipy","numpy","Streamlit"], github: "https://github.com/Wxlly00/var-dashboard" },
   { Chart: RadarChart, icon: <Leaf size={16}/>, accent: "#22c55e", tech: ["Python","pandas","plotly","Streamlit"], github: "https://github.com/Wxlly00/esg-tool" },
   { Chart: GaugeChart, icon: <Shield size={16}/>, accent: "#f59e0b", tech: ["Python","Streamlit","pandas"], github: "https://github.com/Wxlly00/credit-dashboard" },
+  { Chart: ZayaaChart, icon: <TrendingUp size={16}/>, accent: "#f59e0b", tech: ["Excel","Business Plan","Go-to-Market"], github: "https://github.com/Wxlly00" },
 ];
 
 export default function Projects() {

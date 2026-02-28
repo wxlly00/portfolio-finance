@@ -1,7 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Mail, MapPin, Linkedin, Github, Send, ArrowUpRight } from "lucide-react";
+import { useRef, useState } from "react";
+import { Mail, MapPin, Linkedin, Github, Send, ArrowUpRight, CheckCircle, AlertCircle } from "lucide-react";
 import { useLang } from "@/lib/LanguageContext";
 
 export default function Contact() {
@@ -10,6 +10,29 @@ export default function Contact() {
   const { t } = useLang();
   const c = t.contact;
   const f = c.form;
+
+  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
 
   return (
     <section id="contact" className="py-28 px-6 relative overflow-hidden" style={{ background: "linear-gradient(to bottom, #030712, #050f1a)" }}>
@@ -55,44 +78,62 @@ export default function Contact() {
           <motion.div initial={{ opacity: 0, x: 24 }} animate={isInView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.5 }} className="lg:col-span-3">
             <div className="p-7 rounded-2xl relative overflow-hidden" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)" }}>
               <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at top right, rgba(14,165,233,0.05) 0%, transparent 60%)" }} />
-              <form className="space-y-5 relative z-10">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  {[
-                    { label: f.name, placeholder: f.namePlaceholder, type: "text" },
-                    { label: f.email, placeholder: f.emailPlaceholder, type: "email" },
-                  ].map((field, i) => (
-                    <div key={i}>
-                      <label className="block text-xs font-mono text-white/25 uppercase tracking-wider mb-2">{field.label}</label>
-                      <input type={field.type} placeholder={field.placeholder}
-                        className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder:text-white/15 outline-none transition-all"
-                        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                        onFocus={e => (e.target.style.borderColor = "rgba(14,165,233,0.4)")}
-                        onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.08)")} />
+              {status === "success" ? (
+                <div className="flex flex-col items-center justify-center h-48 gap-4">
+                  <CheckCircle size={40} className="text-green-400" />
+                  <p className="text-white/70 text-sm font-mono">Message envoyé avec succès ✓</p>
+                  <button onClick={() => setStatus("idle")} className="text-xs text-white/30 hover:text-white/60 transition-colors underline">Envoyer un autre</button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {[
+                      { label: f.name, placeholder: f.namePlaceholder, key: "name" as const, type: "text" },
+                      { label: f.email, placeholder: f.emailPlaceholder, key: "email" as const, type: "email" },
+                    ].map((field) => (
+                      <div key={field.key}>
+                        <label className="block text-xs font-mono text-white/25 uppercase tracking-wider mb-2">{field.label}</label>
+                        <input type={field.type} placeholder={field.placeholder} value={form[field.key]}
+                          onChange={e => setForm(prev => ({ ...prev, [field.key]: e.target.value }))}
+                          required
+                          className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder:text-white/15 outline-none transition-all"
+                          style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+                          onFocus={e => (e.target.style.borderColor = "rgba(14,165,233,0.4)")}
+                          onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.08)")} />
+                      </div>
+                    ))}
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono text-white/25 uppercase tracking-wider mb-2">{f.subject}</label>
+                    <input type="text" placeholder={f.subjectPlaceholder} value={form.subject}
+                      onChange={e => setForm(prev => ({ ...prev, subject: e.target.value }))}
+                      className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder:text-white/15 outline-none transition-all"
+                      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+                      onFocus={e => (e.target.style.borderColor = "rgba(14,165,233,0.4)")}
+                      onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.08)")} />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono text-white/25 uppercase tracking-wider mb-2">{f.message}</label>
+                    <textarea rows={5} placeholder={f.messagePlaceholder} value={form.message}
+                      onChange={e => setForm(prev => ({ ...prev, message: e.target.value }))}
+                      required
+                      className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder:text-white/15 outline-none transition-all resize-none"
+                      style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
+                      onFocus={e => (e.target.style.borderColor = "rgba(14,165,233,0.4)")}
+                      onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.08)")} />
+                  </div>
+                  {status === "error" && (
+                    <div className="flex items-center gap-2 text-red-400 text-xs">
+                      <AlertCircle size={13} /> Erreur — vérifie la config email dans Vercel
                     </div>
-                  ))}
-                </div>
-                <div>
-                  <label className="block text-xs font-mono text-white/25 uppercase tracking-wider mb-2">{f.subject}</label>
-                  <input type="text" placeholder={f.subjectPlaceholder}
-                    className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder:text-white/15 outline-none transition-all"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                    onFocus={e => (e.target.style.borderColor = "rgba(14,165,233,0.4)")}
-                    onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.08)")} />
-                </div>
-                <div>
-                  <label className="block text-xs font-mono text-white/25 uppercase tracking-wider mb-2">{f.message}</label>
-                  <textarea rows={5} placeholder={f.messagePlaceholder}
-                    className="w-full px-4 py-3 rounded-xl text-sm text-white placeholder:text-white/15 outline-none transition-all resize-none"
-                    style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}
-                    onFocus={e => (e.target.style.borderColor = "rgba(14,165,233,0.4)")}
-                    onBlur={e => (e.target.style.borderColor = "rgba(255,255,255,0.08)")} />
-                </div>
-                <button type="submit"
-                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold text-white"
-                  style={{ background: "linear-gradient(135deg, #0ea5e9, #22c55e)", boxShadow: "0 4px 20px rgba(14,165,233,0.25)" }}>
-                  <Send size={14} />{f.send}
-                </button>
-              </form>
+                  )}
+                  <button type="submit" disabled={status === "loading"}
+                    className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl text-sm font-semibold text-white disabled:opacity-50"
+                    style={{ background: "linear-gradient(135deg, #0ea5e9, #22c55e)", boxShadow: "0 4px 20px rgba(14,165,233,0.25)" }}>
+                    <Send size={14} />{status === "loading" ? "Envoi..." : f.send}
+                  </button>
+                </form>
+              )}
             </div>
           </motion.div>
         </div>
