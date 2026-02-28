@@ -15,7 +15,7 @@ const en = {
     title2: "LAWSON HELLU",
     subtitle: "Finance Analyst — Asset Management & Corporate Finance",
     location: "Université Paris-Saclay · Paris, France",
-    bio: "Combining institutional finance (BIDC, SGI-TOGO) with entrepreneurship (€500K revenue) and quantitative research — I build tools that turn complex financial data into actionable insights.",
+    bio: "Combining institutional finance (EBID, SGI-TOGO) with entrepreneurship (€500K revenue) and quantitative research — I build tools that turn complex financial data into actionable insights.",
     cta1: "View Projects",
     cta2: "Download CV",
     chartTitle: "FAANG Portfolio",
@@ -32,7 +32,7 @@ const en = {
   about: {
     tag: "// about",
     title: "About Me",
-    p1: "With hands-on experience at the BIDC — the ECOWAS regional development bank — and SGI-TOGO in West African debt capital markets, I bring a rare perspective combining institutional finance with frontier market expertise.",
+    p1: "With hands-on experience at the EBID — the ECOWAS regional development bank — and SGI-TOGO in West African debt capital markets, I bring a rare perspective combining institutional finance with frontier market expertise.",
     p2: "As founder of Papyrus Distributions, I managed a business generating over €500K in cumulative revenue — overseeing full P&L, treasury, banking relationships, and navigating judicial liquidation following a major client default.",
     p3: "Currently at Université Paris-Saclay, building quantitative skills through projects in portfolio optimization, risk modeling, DCF, LBO, and ESG analysis.",
     p4: "4+ years of personal macro and technical trading complement my analytical work — giving me a practitioner's instinct on top of academic rigor.",
@@ -289,7 +289,7 @@ const fr: typeof en = {
     items: [
       {
         role: "Analyste Recherche & Stratégie Stagiaire",
-        company: "EBID — Banque d'Investissement et de Développement de la CEDEAO",
+        company: "BIDC — Banque d'Investissement et de Développement de la CEDEAO",
         period: "Juil – Sep 2025",
         location: "Lomé, Togo",
         badge: "Banque de développement",
@@ -304,7 +304,7 @@ const fr: typeof en = {
       },
       {
         role: "Analyste Marchés de Capitaux Stagiaire",
-        company: "SGI-TOGO — Bourse & Gestion d'Actifs",
+        company: "SGI-TOGO — Société de Gestion et d'Intermédiation",
         period: "Avr – Jun 2025",
         location: "Lomé, Togo",
         badge: "Marchés de capitaux",
